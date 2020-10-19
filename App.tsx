@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>liverpool r shite</Text>
+      <Text>everton are the best</Text>
       <StatusBar style="auto" />
     </View>
   );
