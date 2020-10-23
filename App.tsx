@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   },
   loginBox: {
      flex: 1,
+
      alignItems: 'center',
      justifyContent: 'center',
    },
