@@ -19,12 +19,12 @@ export default class App extends Component<Props> {
         <Button
         onPress={this.logInPage}
         title="Log In"
-        color="#FFFFFF"
+        color="#000000"
         accessibilityLabel="Click here to Log In"/>
         <Button
         onPress={this.signUpPage}
         title="Sign Up"
-        color="#FFFFFF"
+        color="#000000"
         accessibilityLabel="Click here to Sign Up"/>
       </SafeAreaView>
     )
