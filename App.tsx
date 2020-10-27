@@ -1,33 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet, Text, View, TextInput, Button, SafeAreaView } from 'react-native';
 
-export default function App() {
-const [value, onChangeText] = React.useState('Useless Placeholder');
-const [value1, onChangeText1] = React.useState('Password');
-  return (
-    <SafeAreaView style={styles.container}>
-      <Text>Everton!!!!</Text>
-      <StatusBar style="auto" />
-      <TextInput style = {styles.loginBox}
-            onChangeText={text => onChangeText(text)}
-            value={value}
-            />
-       </SafeAreaView>
-  );
+
+type Props = {}; 
+export default class App extends Component<Props> {
+
+  logInPage() {
+    return;
+  }
+
+  signUpPage() {
+    return;
+  }
+
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Button
+        onPress={this.logInPage}
+        title="Log In"
+        color="#FFFFFF"
+        accessibilityLabel="Click here to Log In"/>
+        <Button
+        onPress={this.signUpPage}
+        title="Sign Up"
+        color="#FFFFFF"
+        accessibilityLabel="Click here to Sign Up"/>
+      </SafeAreaView>
+    )
+  }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#add8e6',
+    backgroundColor: '#000000',
     alignItems: 'center',
-  },
-  loginBox: {
-     flex: 1,
-
-     alignItems: 'center',
-     justifyContent: 'center',
-   },
+}
 });
