@@ -35,7 +35,7 @@ const mainApp = () => {
         <View style={styles.login}>
         <Button
         onPress={() => {
-        alert('Everton will win the league!');
+        alert('Everton will win the league!!!!');
         }}
         title="Log In"
         color="#008000"
