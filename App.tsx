@@ -15,7 +15,6 @@ const mainApp = () => {
         <Text style={{color: '#fff', fontSize: 32}}>Patient Access!</Text>
         </View>
 
-
         <View style={{width: 200, height: 30, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', marginTop: 70}}>
         <TextInput
                onChangeText={text => onChangeText(text)}
