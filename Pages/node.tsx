@@ -3,10 +3,10 @@ var router = express.Router()
 var mysql = require('mysql');
 
 const connection = mysql.createPool({
-    host        :   'https://www.000webhost.com/',
-    database    :   'RSMCovidApp',
-    user        :   'rsmgroupljmu@outlook.com',
-    password    :   'rsmCovidapp'
+    host        :   'localhost',
+    database    :   'id15127755_rsmcovidapp',
+    user        :   'id15127755_rsmadmin',
+    password    :   '7@8uepqI(J^VKt6pOghE'
 });
 
 router.get('/', function(req, res, next) {
