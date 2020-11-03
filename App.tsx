@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, SafeAreaView, Linking } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button ,SafeAreaView, Linking } from 'react-native';
 
 const mainApp = () => {
   const [value, onChangeText] = React.useState();
@@ -12,39 +12,49 @@ const mainApp = () => {
 
 
         <View style={styles.title}>
-        <Text style={{color: '#fff', fontSize: 32}}>Patient Access!</Text>
+        <Text style={{color: '#fff', fontSize: 40}}>Patient Access</Text>
         </View>
 
-        <View style={{width: 200, height: 30, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', marginTop: 70}}>
+
+        <View style={{width: 300, height: 30, backgroundColor: '#89dee2', alignItems: 'center', justifyContent: 'center', marginTop: 70}}>
         <TextInput
-               onChangeText={text => onChangeText(text)}
+               placeholder="Your Email"
+               placeholderTextColor="white"
+               keyboardType="email-address"
+               returnKeyType="next"
                value={value}
+               style={styles.textInput}
+               autoCapitalize="none"
              />
         </View>
 
 
-        <View style={{width: 200, height: 30, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', marginTop: 40}}>
+        <View style={{width: 300, height: 30, backgroundColor: '#89dee2', alignItems: 'center', justifyContent: 'center', marginTop: 70}}>
         <TextInput
-               onChangeText1={text1 => onChangeText1(text1)}
-               value1={value1}
+               placeholder="Your Password"
+               placeholderTextColor="white"
+               returnKeyType="go"
+               value={value1}
+               style={styles.textInput}
+               secureTextEntry={true}
+               autoCapitalize="none"
              />
          </View>
 
 
-        <View style={styles.login}>
+        <View style={{flex: 3, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
         <Button
-        onPress={() => {
-        alert('Everton will win the league!!!!');
-        }}
+        onPress={this.login}
         title="Log In"
         color="#008000"
         accessibilityLabel="Click here to Log In"/>
-
-         <Text style={{color: 'blue', marginTop: 20}}
-            onPress={() => Linking.openURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO')}>
+         <Text style={{color: '#000000', marginTop: 20}}
+            onPress={() => Linking.openURL('')}>
               Click to Reset Password
          </Text>
         </View>
+
+        
 
 
         <View style={styles.signUp}>
@@ -53,7 +63,7 @@ const mainApp = () => {
         alert('Everton 2021 league champions!');
         }}
         title="Sign Up"
-        color="#FF0000"
+        color="#000000"
         accessibilityLabel="Click here to Sign Up"/>
         </View>
 
@@ -61,13 +71,10 @@ const mainApp = () => {
     );
   }
 
-
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: '#89dee2',
     alignItems: 'center',
     justifyContent: 'center',
 },
@@ -75,21 +82,29 @@ const styles = StyleSheet.create({
      flex: 2,
      flexDirection: 'column',
      color: '#888',
-     backgroundColor: '#000000',
+     backgroundColor: '#89dee2',
      justifyContent: 'flex-end',
 },
 login: {
-     flex: 3,
-     flexDirection: 'column',
-     justifyContent: 'center',
-     alignItems: 'center',
+     fontSize: 30,
+     fontWeight: 'bold',
 },
 signUp: {
     flex: 3,
     flexDirection: 'column',
-    backgroundColor: '#000000',
+    backgroundColor: '#89dee2',
     alignItems: 'center',
     justifyContent: 'center',
+    fontSize: 70,
+    fontWeight: 'bold',
+},
+textInput: {
+  flex: 3,
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  fontSize: 20,
+  color: 'white',
 },
 });
 
