@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 12488,
+  "packagerPid": 736,
   "webpackServerPort": 19006,
-  "expoServerNgrokUrl": "https://8a-yqf.rimzor.rsmapp.exp.direct",
-  "packagerNgrokUrl": "https://packager.8a-yqf.rimzor.rsmapp.exp.direct",
-  "ngrokPid": 9180
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
