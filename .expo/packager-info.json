@@ -1,4 +1,5 @@
 {
+<<<<<<< Updated upstream
   "devToolsPort": 19004,
   "expoServerPort": 19000,
   "packagerPort": 19001,
@@ -7,4 +8,13 @@
   "expoServerNgrokUrl": "https://8a-yqf.rimzor.rsmapp.exp.direct",
   "packagerNgrokUrl": "https://packager.8a-yqf.rimzor.rsmapp.exp.direct",
   "ngrokPid": 9180
+=======
+  "devToolsPort": 19002,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
+>>>>>>> Stashed changes
 }
