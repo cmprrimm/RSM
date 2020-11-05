@@ -45,7 +45,7 @@ class Login extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#003f5c',
+      backgroundColor: '#00A9CE',
       alignItems: 'center',
       justifyContent: 'center',
     },

@@ -5,7 +5,12 @@ import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'rea
 class SignUp extends React.Component {
     state = {
         email: "",
-        password: ""
+        password: "",
+        fullName: "",
+        address: "",
+        gender: "",
+        DOB: "",
+        contactNo: "",
     }
     render() {
         return (
@@ -16,7 +21,7 @@ class SignUp extends React.Component {
                         style={styles.inputText}
                         placeholder="Email"
                         placeholderTextColor="#003f5c"
-                        onChangeText={text => this.setState({ password: text })} />
+                        onChangeText={text => this.setState({ email: text })} />
                 </View>
                 <View style={styles.inputView} >
                     <TextInput
@@ -31,35 +36,35 @@ class SignUp extends React.Component {
                         style={styles.inputText}
                         placeholder="Full Name"
                         placeholderTextColor="#003f5c"
-                        onChangeText={text => this.setState({ password: text })} />
+                        onChangeText={text => this.setState({ fullName: text })} />
                 </View>
                 <View style={styles.inputView} >
                     <TextInput
                         style={styles.inputText}
                         placeholder="Address"
                         placeholderTextColor="#003f5c"
-                        onChangeText={text => this.setState({ password: text })} />
+                        onChangeText={text => this.setState({ address: text })} />
                 </View>
                 <View style={styles.inputView} >
                     <TextInput
                         style={styles.inputText}
                         placeholder="Gender"
                         placeholderTextColor="#003f5c"
-                        onChangeText={text => this.setState({ password: text })} />
+                        onChangeText={text => this.setState({ gender: text })} />
                 </View>
                 <View style={styles.inputView} >
                     <TextInput
                         style={styles.inputText}
                         placeholder="Date of Birth"
                         placeholderTextColor="#003f5c"
-                        onChangeText={text => this.setState({ password: text })} />
+                        onChangeText={text => this.setState({ DOB: text })} />
                 </View>
                 <View style={styles.inputView} >
                     <TextInput
                         style={styles.inputText}
                         placeholder="Contact Number"
                         placeholderTextColor="#003f5c"
-                        onChangeText={text => this.setState({ password: text })} />
+                        onChangeText={text => this.setState({ contantNo: text })} />
                 </View>
                 <TouchableOpacity
                     style={styles.registerBtn}
@@ -77,7 +82,7 @@ class SignUp extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#003f5c',
+        backgroundColor: '#00A9CE',
         alignItems: 'center',
         justifyContent: 'center',
     },
