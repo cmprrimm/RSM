@@ -16,18 +16,26 @@ class Login extends React.Component {
                 style={styles.inputText}
                 placeholder="Email" 
                 placeholderTextColor="#003f5c"
+                keyboardType="email-address"
+                autoCompleteType="email"
+                returnKeyType="next"
+                onSubmitEditing={() => { this.password.focus(); }}
                 onChangeText={text => this.setState({email:text})}/>
             </View>
             <View style={styles.inputView} >
-              <TextInput  
+              <TextInput
+                ref={(input) => { this.password = input; }}  
                 secureTextEntry
                 style={styles.inputText}
                 placeholder="Password" 
                 placeholderTextColor="#003f5c"
+                autoCompleteType="password"
+                returnKeyType="go"
                 onChangeText={text => this.setState({password:text})}/>
             </View>
-            <TouchableOpacity>
-              <Text style={styles.forgotText}>Forgot Password?</Text>
+            <TouchableOpacity  onPress={() =>
+            this.props.navigation.navigate('ForgotPassword')}>
+              <Text style={styles.signUpText}>Forgot Password</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.loginBtn}>
               <Text style={styles.loginText}>LOGIN</Text>
@@ -66,7 +74,7 @@ const styles = StyleSheet.create({
     },
     inputText:{
       height:50,
-      color:"white"
+      color:"black"
     },
     signUpText:{
         color:"red"

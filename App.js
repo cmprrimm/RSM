@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import SignUp from './SignUp';
 import Login from './Login';
+import ForgotPassword from './ForgotPassword';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,10 @@ export default class App extends React.Component {
           <Stack.Screen
             name="SignUp"
             component={SignUp}
+          />
+          <Stack.Screen
+            name="ForgotPassword"
+            component={ForgotPassword}
           />
         </Stack.Navigator>
       </NavigationContainer>
