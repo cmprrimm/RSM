@@ -10,7 +10,7 @@ class ForgotPassword extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.logo}>Reset your Password!</Text>
+                <Text style={styles.logo}>Password Reset!</Text>
                 <View style={styles.inputView} >
                     <TextInput
                         style={styles.inputText}

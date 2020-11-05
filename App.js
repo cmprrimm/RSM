@@ -3,9 +3,9 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import SignUp from './SignUp';
-import Login from './Login';
-import ForgotPassword from './ForgotPassword';
+import SignUp from './Pages/SignUp';
+import Login from './Pages/Login';
+import ForgotPassword from './Pages/ForgotPassword';
 
 const Stack = createStackNavigator();
 
