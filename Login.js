@@ -1,12 +1,56 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
 
-
 class Login extends React.Component {
     state={
         email:"",
         password:""
       }
+    UserLoginFunction = () =>{
+
+
+
+     const { UserEmail }  = this.state
+     const { UserPassword }  = this.state
+
+
+    fetch('./User_Login.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+
+        email: UserEmail,
+
+        password: UserPassword
+
+      })
+
+    }).then((response) => response.json())
+          .then((responseJson) => {
+
+            // If server response message same as Data Matched
+           if(responseJson === 'Data Matched')
+            {
+
+                //Then open Profile activity and send user email to profile activity.
+                this.props.navigation.navigate('Second', { Email: UserEmail })
+
+            }
+            else{
+
+              Alert.alert(responseJson)
+            }
+
+          }).catch((error) => {
+            console.error(error)
+          });
+
+
+      }
+
       render(){
         return (
           <View style={styles.container}>
@@ -37,7 +81,8 @@ class Login extends React.Component {
             this.props.navigation.navigate('ForgotPassword')}>
               <Text style={styles.signUpText}>Forgot Password</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.loginBtn}>
+            <TouchableOpacity  onPress={this.UserLoginFunction}
+              style={styles.loginBtn}>
               <Text style={styles.loginText}>LOGIN</Text>
             </TouchableOpacity>
             <TouchableOpacity  onPress={() =>
