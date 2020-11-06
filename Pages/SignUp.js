@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
 import DatePicker from 'react-native-date-picker';
-
+import { Alert } from 'react-native';
 
 class SignUp extends React.Component {
     state = {
@@ -13,6 +13,65 @@ class SignUp extends React.Component {
         DOB: "",
         contactNo: "",
     }
+
+    UserRegistrationFunction = () =>{
+
+     const { email }  = this.state ;
+     const { password }  = this.state ;
+     const { fullName }  = this.state ;
+     const { address }  = this.state ;
+     const { gender }  = this.state ;
+     const { DOB }  = this.state ;
+     const { contactNo }  = this.state ;
+
+    fetch('https://rsmcovidapp.000webhostapp.com//User_Registration.php', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+
+        email: email,
+
+        password: password,
+
+        fullName: fullName,
+
+        address: address,
+
+        gender: gender,
+
+        DOB: DOB,
+
+        contactNo: contactNo
+
+      })
+
+    }).then((response) => response.json())
+          .then((responseJson) => {
+
+            // If server response message same as Data Matched
+           if(responseJson === 'User Registered Successfully')
+            {
+
+                //Then Alert User and Send back to Login Page.
+                Alert.alert(responseJson)
+                this.props.navigation.navigate('Login');
+                //this.props.navigation.navigate('Second', { Email: UserEmail });
+
+            }
+            else{
+
+              Alert.alert(responseJson);
+            }
+
+          }).catch((error) => {
+            console.error(error);
+          });
+
+      }
+
     render() {
         return (
             <View style={styles.container}>
@@ -90,15 +149,11 @@ class SignUp extends React.Component {
                         autoCompleteType="tel"
                         returnKeyType="go"
                         onSubmitEditing={ () => this.props.navigation.navigate('Login') }
-                        onChangeText={text => this.setState({ contantNo: text })} />
+                        onChangeText={text => this.setState({ contactNo: text })} />
                 </View>
-                <TouchableOpacity
-                    
-                    style={styles.registerBtn}
-                    onPress={() =>
-                        this.props.navigation.navigate('Login')}
-                    >
-                    <Text style={styles.signUpText}>Register</Text>
+                <TouchableOpacity onPress={this.UserRegistrationFunction}
+                  style={styles.registerBtn}>
+                  <Text style={styles.signUpText}>Register</Text>
                 </TouchableOpacity>
             </View >
         );

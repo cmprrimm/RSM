@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
+import { Alert } from 'react-native';
 
 class Login extends React.Component {
     state={
@@ -8,13 +9,10 @@ class Login extends React.Component {
       }
     UserLoginFunction = () =>{
 
+     const { email }  = this.state ;
+     const { password }  = this.state ;
 
-
-     const { UserEmail }  = this.state
-     const { UserPassword }  = this.state
-
-
-    fetch('./User_Login.php', {
+    fetch('https://rsmcovidapp.000webhostapp.com/User_Login.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -22,9 +20,9 @@ class Login extends React.Component {
       },
       body: JSON.stringify({
 
-        email: UserEmail,
+        email: email,
 
-        password: UserPassword
+        password: password
 
       })
 
@@ -35,19 +33,20 @@ class Login extends React.Component {
            if(responseJson === 'Data Matched')
             {
 
-                //Then open Profile activity and send user email to profile activity.
-                this.props.navigation.navigate('Second', { Email: UserEmail })
+                //Then Alert User and send to Account page.
+                Alert.alert("Login Successful")
+                //this.props.navigation.navigate('SignUp');
+                //this.props.navigation.navigate('Second', { Email: UserEmail });
 
             }
             else{
 
-              Alert.alert(responseJson)
+              Alert.alert(responseJson);
             }
 
           }).catch((error) => {
             console.error(error)
           });
-
 
       }
 
