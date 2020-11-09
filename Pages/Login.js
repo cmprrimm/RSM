@@ -35,8 +35,8 @@ class Login extends React.Component {
 
                 //Then Alert User and send to Account page.
                 Alert.alert("Login Successful")
-                //this.props.navigation.navigate('SignUp');
-                //this.props.navigation.navigate('Second', { Email: UserEmail });
+                // this.props.navigation.navigate('Home');
+                this.props.navigation.navigate('Home', { Email: email });
 
             }
             else{
