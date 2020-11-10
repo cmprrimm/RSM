@@ -7,7 +7,7 @@ render(){
     return (
       <View style={styles.container}>
         <Text style={styles.logo}>You have now Logged Out</Text>
-        </View>
+      </View>
     );
   }
 }
