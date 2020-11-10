@@ -1,12 +1,57 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
+import { Alert } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-
-class ForgotPassword extends React.Component {
+class CheckUser extends React.Component {
     state = {
         email: "",
         DOB: "",
     }
+
+        CheckUserFunction = () =>{
+
+         const { email }  = this.state ;
+         const { DOB }  = this.state ;
+
+        fetch('https://rsmcovidapp.000webhostapp.com/CheckUser.php', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+
+            email: email,
+
+            DOB: DOB
+
+          })
+
+        }).then((response) => response.json())
+              .then((responseJson) => {
+
+                // If server response message same as Data Matched
+               if(responseJson === 'Data Matched')
+                {
+
+                    //Then Alert User and send to Home page.
+                    //THIS IS WHERE EMAIL IS PASSED TO NEXT PAGE
+                    this.props.navigation.navigate('ResetPassword', { email: email });
+
+                }
+                else{
+
+                  Alert.alert(responseJson);
+                }
+
+              }).catch((error) => {
+                console.error(error)
+              });
+
+          }
+
     render() {
         return (
             <View style={styles.container}>
@@ -29,14 +74,11 @@ class ForgotPassword extends React.Component {
                         placeholder="Date of Birth"
                         placeholderTextColor="#003f5c"
                         returnKeyType="go"
-                        onSubmitEditing={ () => this.props.navigation.navigate('Login') }
+                        onSubmitEditing={ this.CheckUserFunction }
                         onChangeText={text => this.setState({ DOB: text })} />
                 </View>
-                <TouchableOpacity
-                    style={styles.registerBtn}
-                    onPress={() =>
-                        this.props.navigation.navigate('Login')}
-                    >
+                <TouchableOpacity  onPress={ this.CheckUserFunction }
+                    style={styles.registerBtn}>
                     <Text style={styles.forgotPasswordText}>Reset Password</Text>
                 </TouchableOpacity>
             </View >
@@ -44,6 +86,98 @@ class ForgotPassword extends React.Component {
     }
 }
 
+class ResetPassword extends React.Component {
+
+    // NEED TO GET EMAIL FROM CHECKUSER AND USE HERE
+
+    state = {
+        newPassword: "",
+        confirmPassword: "",
+    }
+
+        ResetPasswordFunction = () =>{
+
+         const { newPassword }  = this.state ;
+         const { confirmPassword }  = this.state ;
+         // THIS IS WHERE EMAIL SHOULD BE SET
+         const { params } = this.props.navigation.state;
+         const email = params ? params.email : null;
+
+         if (newPassword === confirmPassword) {
+
+            fetch('https://rsmcovidapp.000webhostapp.com/ResetPassword.php', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+
+                email: email,
+
+                newPassword: newPassword
+
+              })
+
+            }).then((response) => response.json())
+                  .then((responseJson) => {
+
+                    // If server response message same as Data Matched
+                   if(responseJson === 'Password Changed')
+                    {
+
+                        //Then Alert User and send to Home page.
+                        Alert.alert("Password Changed")
+                        this.props.navigation.navigate('Login');
+
+                    }
+                    else{
+
+                      Alert.alert(responseJson);
+                    }
+
+                  }).catch((error) => {
+                    console.error(error)
+                  });
+
+              }
+              else{
+
+                Alert.alert("New Password and Confirm Password do not match!")
+              }
+            }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.logo}>Password Reset!</Text>
+                <View style={styles.inputView} >
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder="New Password"
+                        placeholderTextColor="#003f5c"
+                        returnKeyType="next"
+                        onSubmitEditing={() => { this.confirmPassword.focus(); }}
+                        onChangeText={text => this.setState({ newPassword: text })} />
+                </View>
+                <View style={styles.inputView} >
+                    <TextInput
+                        ref={(input) => { this.confirmPassword = input; }}
+                        style={styles.inputText}
+                        placeholder="Confirm Password"
+                        placeholderTextColor="#003f5c"
+                        returnKeyType="go"
+                        onSubmitEditing={ this.ResetPasswordFunction }
+                        onChangeText={text => this.setState({ confirmPassword: text })} />
+                </View>
+                <TouchableOpacity  onPress={ this.ResetPasswordFunction }
+                    style={styles.registerBtn}>
+                    <Text style={styles.forgotPasswordText}>Reset Password</Text>
+                </TouchableOpacity>
+            </View >
+        );
+    }
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -86,4 +220,23 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ForgotPassword;
+const Stack = createStackNavigator();
+export default class ForgotPassword extends React.Component {
+  render() {
+    return (
+        <Stack.Navigator screenOptions={{
+          headerShown: false
+        }}
+        >
+          <Stack.Screen
+            name="CheckUser"
+            component={CheckUser}
+          />
+          <Stack.Screen
+            name="ResetPassword"
+            component={ResetPassword}
+          />
+        </Stack.Navigator>
+    );
+  }
+}
