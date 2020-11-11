@@ -22,7 +22,7 @@ class Login extends React.Component {
 
         email: email,
 
-        password: password
+        password: password,
 
       })
 
@@ -33,10 +33,8 @@ class Login extends React.Component {
            if(responseJson === 'Data Matched')
             {
 
-                //Then Alert User and send to Home page.
-                // Alert.alert("Login Successful")
-                // this.props.navigation.navigate('Home');
-                this.props.navigation.navigate('Home', { Email: email });
+                //Then send to Home page.
+                this.props.navigation.navigate('Home', { email: email });
 
             }
             else{

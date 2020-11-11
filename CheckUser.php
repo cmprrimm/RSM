@@ -39,8 +39,8 @@ $SuccessLoginJson = json_encode($SuccessLoginMsg);
 
  else{
 
- // If the record inserted successfully then show the message.
-$InvalidMSG = 'Invalid Username or DOB Please Try Again' ;
+ // If the record isn't inserted successfully then show the message.
+$InvalidMSG = 'Invalid Email or DOB Please Try Again' ;
 
 // Converting the message into JSON format.
 $InvalidMSGJSon = json_encode($InvalidMSG);

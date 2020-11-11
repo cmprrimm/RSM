@@ -18,7 +18,7 @@ $email = $obj['email'];
 // Populate password from JSON $obj array and store into $password.
 $newPassword = $obj['newPassword'];
 #
-$Sql_Query = "Update Patient Set Password = '$newPassword; Where Email = '$email'";
+$Sql_Query = "Update Patient Set Password = '$newPassword' Where Email = '$email'";
 
  if(mysqli_query($con,$Sql_Query)){
 
@@ -34,7 +34,7 @@ $SuccessfulJson = json_encode($SuccessfulMSG);
  }
  else{
 
- // If the record inserted successfully then show the message.
+ // If the record isn't inserted successfully then show the message.
 $InvalidMSG = 'Try Again' ;
 
 // Converting the message into JSON format.
@@ -43,6 +43,6 @@ $InvalidJSon = json_encode($InvalidMSG);
 // Echo the message.
  echo $InvalidJSon ;
  }
- }
+
  mysqli_close($con);
 ?>

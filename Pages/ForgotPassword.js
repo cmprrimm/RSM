@@ -88,8 +88,6 @@ class CheckUser extends React.Component {
 
 class ResetPassword extends React.Component {
 
-    // NEED TO GET EMAIL FROM CHECKUSER AND USE HERE
-
     state = {
         newPassword: "",
         confirmPassword: "",
@@ -99,9 +97,6 @@ class ResetPassword extends React.Component {
 
          const { newPassword }  = this.state ;
          const { confirmPassword }  = this.state ;
-         // THIS IS WHERE EMAIL SHOULD BE SET
-         const { params } = this.props.navigation.state;
-         const email = params ? params.email : null;
 
          if (newPassword === confirmPassword) {
 
@@ -113,7 +108,7 @@ class ResetPassword extends React.Component {
               },
               body: JSON.stringify({
 
-                email: email,
+                email: this.props.route.params.email,
 
                 newPassword: newPassword
 
@@ -153,9 +148,11 @@ class ResetPassword extends React.Component {
                 <Text style={styles.logo}>Password Reset!</Text>
                 <View style={styles.inputView} >
                     <TextInput
+                        secureTextEntry
                         style={styles.inputText}
                         placeholder="New Password"
                         placeholderTextColor="#003f5c"
+                        autoCompleteType="password"
                         returnKeyType="next"
                         onSubmitEditing={() => { this.confirmPassword.focus(); }}
                         onChangeText={text => this.setState({ newPassword: text })} />
@@ -163,9 +160,11 @@ class ResetPassword extends React.Component {
                 <View style={styles.inputView} >
                     <TextInput
                         ref={(input) => { this.confirmPassword = input; }}
+                        secureTextEntry
                         style={styles.inputText}
                         placeholder="Confirm Password"
                         placeholderTextColor="#003f5c"
+                        autoCompleteType="password"
                         returnKeyType="go"
                         onSubmitEditing={ this.ResetPasswordFunction }
                         onChangeText={text => this.setState({ confirmPassword: text })} />

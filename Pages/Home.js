@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Linking, l
 
 class Home extends React.Component {
 
-    UserLogoutFunction = () =>{
+/*    UserLogoutFunction = () =>{
         this.props.navigation.navigate('Logout');
-      }
+      }*/
 
     UserProfileFunction = () =>{
         this.props.navigation.navigate('UserProfile');
@@ -16,9 +16,12 @@ class Home extends React.Component {
       }
 
 render(){
+
+    const {goBack} = this.props.navigation;
+
   return (
       <View style={styles.container}>
-        <Text style={styles.logo}> Welcome "Insert Name"</Text>
+        <Text style={styles.logo}> Welcome {this.props.route.params.email}</Text>
         <TouchableOpacity  onPress={this.UserProfileFunction}
           style={styles.loginBtn}>
           <Text style={styles.loginText}>View Profile</Text>
@@ -31,7 +34,7 @@ render(){
           style={styles.loginBtn}>
           <Text style={styles.loginText}>Read Latest Advice</Text>
         </TouchableOpacity>
-        <TouchableOpacity  onPress={this.UserLogoutFunction}
+        <TouchableOpacity  onPress={ () => goBack(null) }
           style={styles.loginBtn}>
           <Text style={styles.loginText}>Log Out</Text>
         </TouchableOpacity>
