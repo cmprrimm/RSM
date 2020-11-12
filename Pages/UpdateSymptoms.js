@@ -1,92 +1,119 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, TouchableHighlight , Alert } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, TouchableHighlight, Alert } from 'react-native';
 // import CheckBox from '@react-native-community/checkbox';
 
 class UpdateSymptoms extends React.Component {
 
     state = {
         selected: null,
-        highTemp: '',
-        continuousCough: '',
-        smellTaste: ''
-     };
+        smoker: '',
+        pregnant: '',
+        MedicalConditions: ''
+    };
 
-    highTempFunction(flag, button) {
+    Smoker(flag, button) {
         if (flag == 1) {
-          this.setState({highTemp: true});
+            this.setState({ smoker: true });
         }
-        this.setState({highTemp: button})
-      }
+        this.setState({ smoker: button })
+    }
 
-      contCoughFunction(flag, button) {
+    Pregnant(flag, button) {
         if (flag == 1) {
-          this.setState({continuousCough: true});
+            this.setState({ pregnant: true });
         }
-        this.setState({continuousCough: button})
-      }
+        this.setState({ pregnant: button })
+    }
 
-      smellTasteFunction(flag, button) {
+    MedicalConditions(flag, button) {
         if (flag == 1) {
-          this.setState({smellTaste: true});
+            this.setState({ MedicalConditions: true });
         }
-        this.setState({smellTaste: button})
-      }
+        this.setState({ MedicalConditions: button })
+    }
 
+    Hospitalised(flag, button) {
+        if (flag == 1) {
+            this.setState({ Hospitalised: true });
+        }
+        this.setState({ Hospitalised: button })
+    }
+
+    CovidSymptoms(flag, button) {
+        if (flag == 1) {
+            this.setState({ covidSymptoms: true });
+        }
+        this.setState({ covidSymptoms: button })
+    }
     render() {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.logo}>Select Symptoms</Text>
-            <Text style={styles.subLogo}>Select as many of the symptoms that apply to you</Text>
-            <View style={styles.inputView} >
-            <TouchableHighlight
-            onPress={() => this.highTempFunction('any flag', '1')}
-            underlayColor="red">
-            <View style= {{backgroundColor: (this.state.highTemp === '1' ? '#fb5b5a' : 'white')} }>
-                <Text style={styles.text}>
-                    A high temperature (fever)
-                </Text>
-                <Text style={styles.subText}>
-                    This means that you feel hot to touch on your chest or back - you don't need to measure your 
-                    temperature with a thermometer.
-                </Text>
-                </View>
-            </TouchableHighlight>
-            </View>
+        return (
+            <View style={styles.container}>
+                <Text style={styles.logo}>Health Information</Text>
+                <Text style={styles.subLogo}>Select the choices that apply to you </Text>
                 <View style={styles.inputView} >
-            <TouchableHighlight
-            onPress={() => this.contCoughFunction('any flag', '1')}
-            underlayColor="red">
-            <View style={{backgroundColor: (this.state.continuousCough === '1' ? '#fb5b5a' : 'white')}}>
-                <Text style={styles.text}>
-                    A new continuous cough
+                    <TouchableHighlight
+                        onPress={() => this.Smoker('any flag', '1')}
+                        underlayColor="red">
+                        <View style={{ backgroundColor: (this.state.smoker === '1' ? '#fb5b5a' : 'white') }}>
+                            <Text style={styles.text}>
+                                Click here if you smoke.
                 </Text>
-                <Text style={styles.subText}>
-                    This means coughing a lot for more than an hour, or three or more coughing episodes in 24 hours 
-                    (if you usually have a cough, it may be worse than usual).
-                </Text>
-            </View>
-            </TouchableHighlight>
+
+                        </View>
+                    </TouchableHighlight>
                 </View>
                 <View style={styles.inputView} >
-            <TouchableHighlight
-            onPress={() => this.smellTasteFunction('any flag', '1')}
-            underlayColor="red">
-            <View style={{backgroundColor: (this.state.smellTaste === '1' ? '#fb5b5a' : 'white')}}>
-                <Text style={styles.text}>
-                    A change to your sense of smell or taste
+                    <TouchableHighlight
+                        onPress={() => this.Pregnant('any flag', '1')}
+                        underlayColor="red">
+                        <View style={{ backgroundColor: (this.state.pregnant === '1' ? '#fb5b5a' : 'white') }}>
+                            <Text style={styles.text}>
+                                Click here if you're Pregnant.
                 </Text>
-                <Text style={styles.subText}>
-                    This means you have noticed that you cannot smell or taste anything, or that things smell or 
-                    taste different to normal.
-                </Text>
-            </View>
-            </TouchableHighlight>
+                        </View>
+                    </TouchableHighlight>
                 </View>
-            <TouchableOpacity  onPress={alert='Submitted Covid Symptoms'}
-                        style={styles.submitButton}>
-                <Text style={styles.submitText}>Submit</Text>
-            </TouchableOpacity>
-        </View >
+                <View style={styles.inputView1} >
+                    <TouchableHighlight
+                        onPress={() => this.MedicalConditions('any flag', '1') }
+                        underlayColor="red">
+                        <View style={{ backgroundColor: (this.state.MedicalConditions === '1' ? '#fb5b5a' : 'white') }}>
+                            <Text style={styles.text1}>
+                                Click here if you have any underlying medical condtions.
+                </Text>
+                        </View>
+                    </TouchableHighlight>
+                </View>
+                <View style={styles.inputView1} >
+                    <TouchableHighlight
+                        onPress={() => this.Hospitalised('any flag', '1')}
+                        underlayColor="red">
+                        <View style={{ backgroundColor: (this.state.Hospitalised === '1' ? '#fb5b5a' : 'white') }}>
+                            <Text style={styles.text1}>
+                                Click here if you have recently been hospitlised in the past 3 months.
+                </Text>
+                        </View>
+                    </TouchableHighlight>
+                </View>
+                <View style={styles.inputView1} >
+                    <TouchableHighlight
+                        onPress={() => this.CovidSymptoms('any flag', '1')}
+                        underlayColor="red">
+                        <View style={{ backgroundColor: (this.state.covidSymptoms === '1' ? '#fb5b5a' : 'white') }}>
+                            <Text style={styles.text1}>
+                                Click here if you are experiencing any COVID-19 Symptoms.
+                </Text>
+                            <Text style={styles.subText}>
+                                If selected further questions will be asked relating to COVID-19 symptoms.
+                </Text>
+                        </View>
+                    </TouchableHighlight>
+                </View>
+                <TouchableOpacity onPress={() => { if (this.state.covidSymptoms === '1') { this.props.navigation.navigate('CovidSymptoms') } else { this.props.navigation.navigate('Home') } }}
+                    style={styles.nextBtn}>
+                    <Text style={styles.nextText}>Next</Text>
+                </TouchableOpacity>
+            </View >
         );
     }
 }
@@ -102,46 +129,73 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 45,
         color: "#fb5b5a",
-        marginBottom: 40,
+        marginBottom: 10,
     },
     subLogo: {
+        flexDirection: 'row',
         fontWeight: "bold",
         fontSize: 25,
         color: "#fb5b5a",
-        marginBottom: 40,
+        marginBottom: 20,
+        marginLeft: 20,
+        flexWrap: 'wrap',
+        textAlign: 'center',
     },
     text: {
         height: 20,
         color: "black",
         fontSize: 14.5,
-        fontWeight:"bold",
+        fontWeight: "bold",
+        flexWrap: 'wrap',
+        textAlign: 'center',
+    },
+    text1: {
+        height: 40,
+        color: "black",
+        fontSize: 14.5,
+        fontWeight: "bold",
+        flexWrap: 'wrap',
+        textAlign: 'center',
     },
     subText: {
-        color: "black",
-        fontSize: 13, 
+        color: "red",
+        fontSize: 13,
+        flexWrap: 'wrap',
+        textAlign: 'center',
     },
     inputView: {
         width: "80%",
         backgroundColor: "white",
         borderRadius: 25,
-        height: 115,
-        marginBottom: 20,
+        height: 50,
+        marginBottom: 10,
         justifyContent: "center",
-        padding: 20
+        alignItems: "center",
+        textAlign: 'center',
     },
-    submitButton:{
-        width:"80%",
-        backgroundColor:"red",
-        borderRadius:25,
-        height:50,
-        alignItems:"center",
-        justifyContent:"center",
-        marginTop:40,
-        marginBottom:10
-      },
-      submitText:{
-        color:"white"
-      }
+    inputView1: {
+        width: "80%",
+        backgroundColor: "white",
+        borderRadius: 25,
+        height: 110,
+        marginBottom: 10,
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: 'center',
+    },
+    nextBtn: {
+        width: "80%",
+        backgroundColor: "green",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 10,
+        marginBottom: 10
+    },
+    nextText: {
+        color: "white"
+    }
 });
 
 export default UpdateSymptoms;
