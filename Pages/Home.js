@@ -3,12 +3,17 @@ import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Linking, l
 
 class Home extends React.Component {
 
-/*    UserLogoutFunction = () =>{
-        this.props.navigation.navigate('Logout');
-      }*/
+    UserLogoutFunction = () =>{
+        ;
+      }
 
     UserProfileFunction = () =>{
-        this.props.navigation.navigate('UserProfile');
+        this.props.navigation.navigate('UserProfile', { name: this.props.route.params.name,
+                                                        email: this.props.route.params.email,
+                                                        contactNo: this.props.route.params.contactNo,
+                                                        DOB: this.props.route.params.DOB,
+                                                        gender: this.props.route.params.gender,
+                                                        address: this.props.route.params.address});
       }
 
     UpdateSymptomsFunction = () =>{
@@ -21,7 +26,7 @@ render(){
 
   return (
       <View style={styles.container}>
-        <Text style={styles.logo}> Welcome {this.props.route.params.email}</Text>
+        <Text style={styles.logo}> Welcome {this.props.route.params.name}</Text>
         <TouchableOpacity  onPress={this.UserProfileFunction}
           style={styles.loginBtn}>
           <Text style={styles.loginText}>View Profile</Text>

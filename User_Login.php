@@ -24,17 +24,15 @@ $Sql_Query = "select * from Patient where Email = '$email' and Password = '$pass
 // Executing SQL Query.
 $check = mysqli_fetch_array(mysqli_query($con,$Sql_Query));
 
-
 if(isset($check)){
 
- $SuccessLoginMsg = 'Data Matched' ;
+ $SuccessfulMSG = "Data Matched" ;
 
  // Converting the message into JSON format.
-$SuccessLoginJson = json_encode($SuccessLoginMsg);
+$SuccessfulMSGJson = json_encode($check);
 
 // Echo the message.
- echo $SuccessLoginJson ;
-
+ echo $SuccessfulMSGJson ;
  }
 
  else{

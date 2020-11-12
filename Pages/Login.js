@@ -28,18 +28,23 @@ class Login extends React.Component {
 
     }).then((response) => response.json())
           .then((responseJson) => {
-
             // If server response message same as Data Matched
-           if(responseJson === 'Data Matched')
+           if(responseJson[0] > 0)
             {
 
                 //Then send to Home page.
-                this.props.navigation.navigate('Home', { email: email });
+                this.props.navigation.navigate('Home', { email: email,
+                                                         ID: responseJson[0],
+                                                         name: responseJson[1],
+                                                         DOB: responseJson[4],
+                                                         address: responseJson[5],
+                                                         gender: responseJson[6],
+                                                         contactNo: responseJson[7]});
 
             }
             else{
 
-              Alert.alert(responseJson);
+            Alert.alert(responseJson);
             }
 
           }).catch((error) => {

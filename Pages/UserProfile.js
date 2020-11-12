@@ -5,29 +5,29 @@ class UserProfile extends React.Component {
 render() {
     return (
         <View style={styles.container}>
-            <Text style={styles.logo}>Nicholas Profile</Text>
+            <Text style={styles.logo}>{this.props.route.params.name}'s Profile</Text>
             <Text></Text>
         <View style={styles.textViewContact} >
             <Text style={styles.text}>E-Mail Address</Text> 
-            <Text style={styles.subText}>Nick@gmail.com</Text>
+            <Text style={styles.subText}>{this.props.route.params.email}</Text>
             <Text></Text>
             <Text style={styles.text}>Phone Number</Text>
-            <Text style={styles.subText}>07426625437</Text>
+            <Text style={styles.subText}>{this.props.route.params.contactNo}</Text>
         </View>
         <View style={styles.textViewDetails} >
             <Text></Text>
             <Text style={styles.text}>DOB</Text> 
-            <Text style={styles.subText}>1998-29-11</Text>
+            <Text style={styles.subText}>{this.props.route.params.DOB}</Text>
             <Text></Text>
             <Text style={styles.text}>Gender</Text>
-            <Text style={styles.subText}>Male</Text>
+            <Text style={styles.subText}>{this.props.route.params.gender}</Text>
             <Text></Text>
             <Text style={styles.text}>Address</Text>
-            <Text style={[styles.subText, { marginBottom: 40 }]}>2 Nottingham</Text>
+            <Text style={[styles.subText, { marginBottom: 40 }]}>{this.props.route.params.address}</Text>
             
         </View>
         <TouchableOpacity  onPress={() =>
-            this.props.navigation.navigate('ChangePassword')}
+            this.props.navigation.navigate('ChangePassword', { email: this.props.route.params.email })}
               style={styles.userButton}>
               <Text style={styles.loginText}>Change Password</Text>
             </TouchableOpacity>
