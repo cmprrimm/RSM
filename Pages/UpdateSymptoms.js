@@ -8,7 +8,9 @@ class UpdateSymptoms extends React.Component {
         selected: null,
         smoker: '',
         pregnant: '',
-        MedicalConditions: ''
+        MedicalConditions: '',
+        Hospitalised:'',
+        CovidSymptoms:''
     };
 
     Smoker(flag, button) {
