@@ -32,7 +32,10 @@ render() {
               <Text style={styles.loginText}>Change Password</Text>
             </TouchableOpacity>
             <TouchableOpacity  onPress={() =>
-            this.props.navigation.navigate('UpdateInfo')}
+            this.props.navigation.navigate('UpdateInfo', { ID: this.props.route.params.ID,
+                                                           email: this.props.route.params.email,
+                                                           address: this.props.route.params.address,
+                                                           contactNo: this.props.route.params.contactNo})}
               style={styles.userButton}>
               <Text style={styles.loginText}>Update Details</Text>
             </TouchableOpacity>

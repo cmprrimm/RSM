@@ -3,12 +3,9 @@ import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Linking, l
 
 class Home extends React.Component {
 
-    UserLogoutFunction = () =>{
-        ;
-      }
-
     UserProfileFunction = () =>{
-        this.props.navigation.navigate('UserProfile', { name: this.props.route.params.name,
+        this.props.navigation.navigate('UserProfile', { ID: this.props.route.params.ID,
+                                                        name: this.props.route.params.name,
                                                         email: this.props.route.params.email,
                                                         contactNo: this.props.route.params.contactNo,
                                                         DOB: this.props.route.params.DOB,

@@ -98,49 +98,54 @@ class ResetPassword extends React.Component {
          const { newPassword }  = this.state ;
          const { confirmPassword }  = this.state ;
 
-         if (newPassword === confirmPassword) {
+         if (newPassword !== ""){
 
-            fetch('https://rsmcovidapp.000webhostapp.com/ResetPassword.php', {
-              method: 'POST',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
+             if (newPassword === confirmPassword) {
 
-                email: this.props.route.params.email,
+                fetch('https://rsmcovidapp.000webhostapp.com/ResetPassword.php', {
+                  method: 'POST',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
 
-                newPassword: newPassword
+                    email: this.props.route.params.email,
 
-              })
+                    newPassword: newPassword
 
-            }).then((response) => response.json())
-                  .then((responseJson) => {
+                  })
 
-                    // If server response message same as Data Matched
-                   if(responseJson === 'Password Changed')
-                    {
+                }).then((response) => response.json())
+                      .then((responseJson) => {
 
-                        //Then Alert User and send to Home page.
-                        Alert.alert("Password Changed")
-                        this.props.navigation.navigate('Login');
+                        // If server response message same as Data Matched
+                       if(responseJson === 'Password Changed')
+                        {
 
-                    }
-                    else{
+                            //Then Alert User and send to Home page.
+                            Alert.alert("Password Changed")
+                            this.props.navigation.navigate('Login');
 
-                      Alert.alert(responseJson);
-                    }
+                        }
+                        else{
 
-                  }).catch((error) => {
-                    console.error(error)
-                  });
+                          Alert.alert(responseJson);
+                        }
 
-              }
-              else{
+                      }).catch((error) => {
+                        console.error(error)
+                      });
 
+             }
+             else{
                 Alert.alert("New Password and Confirm Password do not match!")
-              }
-            }
+             }
+         }
+         else{
+            Alert.alert("Please enter a new password!")
+         }
+      }
 
     render() {
         return (

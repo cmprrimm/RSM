@@ -77,6 +77,7 @@ class Login extends React.Component {
                 placeholderTextColor="#003f5c"
                 autoCompleteType="password"
                 returnKeyType="go"
+                onSubmitEditing={ this.UserLoginFunction }
                 onChangeText={text => this.setState({password:text})}/>
             </View>
             <TouchableOpacity  onPress={() =>

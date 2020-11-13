@@ -17,7 +17,7 @@ $email = $obj['email'];
 
 // Populate password from JSON $obj array and store into $password.
 $newPassword = $obj['newPassword'];
-#
+
 $Sql_Query = "Update Patient Set Password = '$newPassword' Where Email = '$email'";
 
  if(mysqli_query($con,$Sql_Query)){

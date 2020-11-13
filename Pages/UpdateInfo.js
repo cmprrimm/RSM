@@ -3,81 +3,72 @@ import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ScrollView
 import DatePicker from 'react-native-date-picker';
 import { Alert } from 'react-native';
 
-class SignUp extends React.Component {
-    // state = {
-    //     email: "",
-    //     password: "",
-    //     fullName: "",
-    //     address: "",
-    //     gender: "",
-    //     DOB: "",
-    //     contactNo: "",
-    // }
+class UpdateInfo extends React.Component {
+    state = {
+        email: "",
+        address: "",
+        contactNo: "",
+    }
 
-    // UserRegistrationFunction = () =>{
+        UpdateInfoFunction = () =>{
 
-    //  const { email }  = this.state ;
-    //  const { password }  = this.state ;
-    //  const { fullName }  = this.state ;
-    //  const { address }  = this.state ;
-    //  const { gender }  = this.state ;
-    //  const { DOB }  = this.state ;
-    //  const { contactNo }  = this.state ;
+         const { email }  = this.state ;
+         const { address }  = this.state ;
+         const { contactNo } = this.state;
 
-    // fetch('https://rsmcovidapp.000webhostapp.com//User_Registration.php', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
+         fetch('https://rsmcovidapp.000webhostapp.com/UpdateInfo.php', {
+           method: 'POST',
+           headers: {
+             'Accept': 'application/json',
+             'Content-Type': 'application/json',
+           },
+           body: JSON.stringify({
 
-    //     email: email,
+             ID: this.props.route.params.ID,
 
-    //     password: password,
+             origEmail: this.props.route.params.email,
 
-    //     fullName: fullName,
+             origAddress: this.props.route.params.address,
 
-    //     address: address,
+             origContactNo: this.props.route.params.contactNo,
 
-    //     gender: gender,
+             email: email,
 
-    //     DOB: DOB,
+             address: address,
 
-    //     contactNo: contactNo
+             contactNo: contactNo
 
-    //   })
+           })
 
-    // }).then((response) => response.json())
-    //       .then((responseJson) => {
+         }).then((response) => response.json())
+               .then((responseJson) => {
 
-    //         // If server response message same as Data Matched
-    //        if(responseJson === 'User Registered Successfully')
-    //         {
+                 // If server response message same as Data Matched
+                if(responseJson === 'Information Updated')
+                 {
 
-    //             //Then Alert User and Send back to Login Page.
-    //             Alert.alert(responseJson)
-    //             this.props.navigation.navigate('Login');
-    //             //this.props.navigation.navigate('Second', { Email: UserEmail });
+                     //Then Alert User and send to Home page.
+                     Alert.alert("Information Updated")
+                     this.props.navigation.navigate('UserProfile', { email: email, address: address, contactNo: contactNo });
 
-    //         }
-    //         else{
+                 }
+                 else{
 
-    //           Alert.alert(responseJson);
-    //         }
+                   Alert.alert(responseJson);
+                 }
 
-    //       }).catch((error) => {
-    //         console.error(error);
-    //       });
+               }).catch((error) => {
+                 console.error(error)
+               });
 
-    //   }
+        }
 
     render() {
         return (
             <View style={styles.container}>
                 <Text style={styles.logo}>Update Information</Text>
                 <View style={styles.inputView} >
-                    <TextInput
+                    <TextInput defaultValue = { this.props.route.params.email }
                         style={styles.inputText}
                         placeholder="Email"
                         placeholderTextColor="#003f5c"
@@ -88,27 +79,27 @@ class SignUp extends React.Component {
                         onChangeText={text => this.setState({ email: text })} />
                 </View>
                 <View style={styles.inputView} >
-                    <TextInput
+                    <TextInput defaultValue = { this.props.route.params.address }
                         ref={(input) => { this.address = input; }}
                         style={styles.inputText}
                         placeholder="Address"
                         placeholderTextColor="#003f5c"
                         returnKeyType="next"
-                        onSubmitEditing={() => { this.number.focus(); }}
-                        onChangeText={text => this.setState({ number: text })} />
+                        onSubmitEditing={() => { this.contactNo.focus(); }}
+                        onChangeText={text => this.setState({ address: text })} />
                 </View>
                 <View style={styles.inputView} >
-                    <TextInput
-                        ref={(input) => { this.number = input; }}
+                    <TextInput defaultValue = { this.props.route.params.contactNo }
+                        ref={(input) => { this.contactNo = input; }}
                         style={styles.inputText}
                         placeholder="Contact Number"
                         placeholderTextColor="#003f5c"
                         autoCompleteType="tel"
                         returnKeyType="go"
-                        onSubmitEditing={ () => this.props.navigation.navigate('Home') }
+                        onSubmitEditing={ this.UpdateInfoFunction }
                         onChangeText={text => this.setState({ contactNo: text })} />
                 </View>
-                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Home') }
+                <TouchableOpacity onPress={ this.UpdateInfoFunction }
                   style={styles.updateButton}>
                   <Text style={styles.updateText}>Update Information</Text>
                 </TouchableOpacity>
@@ -116,7 +107,6 @@ class SignUp extends React.Component {
         );
     }
 }
-
 
 const styles = StyleSheet.create({
     container: {
@@ -159,4 +149,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default SignUp;
+export default UpdateInfo;
