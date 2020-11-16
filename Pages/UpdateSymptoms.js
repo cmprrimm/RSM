@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, TouchableHighlight, Alert } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableOpacity, TouchableHighlight} from 'react-native';
 // import CheckBox from '@react-native-community/checkbox';
 
 class UpdateSymptoms extends React.Component {
@@ -60,12 +60,11 @@ class UpdateSymptoms extends React.Component {
                             <Text style={styles.text}>
                                 Click here if you smoke.
                 </Text>
-
                         </View>
                     </TouchableHighlight>
                 </View>
                 <View style={styles.inputView} >
-                    <TouchableHighlight
+                    <TouchableOpacity
                         onPress={() => this.Pregnant('any flag', '1')}
                         underlayColor="red">
                         <View style={{ backgroundColor: (this.state.pregnant === '1' ? '#fb5b5a' : 'white') }}>
@@ -73,9 +72,9 @@ class UpdateSymptoms extends React.Component {
                                 Click here if you're Pregnant.
                 </Text>
                         </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
-                <View style={styles.inputView1} >
+                <View style={styles.inputView} >
                     <TouchableHighlight
                         onPress={() => this.MedicalConditions('any flag', '1') }
                         underlayColor="red">
@@ -86,10 +85,11 @@ class UpdateSymptoms extends React.Component {
                         </View>
                     </TouchableHighlight>
                 </View>
-                <View style={styles.inputView1} >
+                <View>
                     <TouchableHighlight
+                    style={styles.inputView}
                         onPress={() => this.Hospitalised('any flag', '1')}
-                        underlayColor="red">
+                        backgroundColor="red">
                         <View style={{ backgroundColor: (this.state.Hospitalised === '1' ? '#fb5b5a' : 'white') }}>
                             <Text style={styles.text1}>
                                 Click here if you have recently been hospitlised in the past 3 months.
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     subText: {
-        color: "red",
+        color: "black",
         fontSize: 13,
         flexWrap: 'wrap',
         textAlign: 'center',
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
         width: "80%",
         backgroundColor: "white",
         borderRadius: 25,
-        height: 50,
+        height: 65,
         marginBottom: 10,
         justifyContent: "center",
         alignItems: "center",
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     },
     nextBtn: {
         width: "80%",
-        backgroundColor: "green",
+        backgroundColor: "#fb5b5a",
         borderRadius: 25,
         height: 50,
         alignItems: "center",
@@ -196,7 +196,9 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     nextText: {
-        color: "white"
+        color: "white", 
+        fontWeight: "bold",
+        fontSize: 18
     }
 });
 

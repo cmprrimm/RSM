@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, Linking, localStorage } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Linking } from 'react-native';
 
 class Home extends React.Component {
 
@@ -23,22 +23,22 @@ render(){
 
   return (
       <View style={styles.container}>
-        <Text style={styles.logo}> Welcome {this.props.route.params.name}</Text>
+        <Text style={styles.logo}>Welcome {this.props.route.params.name}</Text>
         <TouchableOpacity  onPress={this.UserProfileFunction}
-          style={styles.loginBtn}>
-          <Text style={styles.loginText}>View Profile</Text>
+          style={styles.Button}>
+          <Text style={styles.buttonText}>View Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity  onPress={this.UpdateSymptomsFunction} 
-          style={styles.loginBtn}>
-          <Text style={styles.loginText}>Update Symptoms</Text>
+          style={styles.Button}>
+          <Text style={styles.buttonText}>Update Symptoms</Text>
         </TouchableOpacity>
         <TouchableOpacity  onPress={ ()=> Linking.openURL('https://www.gov.uk/coronavirus')}
-          style={styles.loginBtn}>
-          <Text style={styles.loginText}>Read Latest Advice</Text>
+          style={styles.Button}>
+          <Text style={styles.buttonText}>Read Latest Advice</Text>
         </TouchableOpacity>
         <TouchableOpacity  onPress={ () => goBack(null) }
-          style={styles.loginBtn}>
-          <Text style={styles.loginText}>Log Out</Text>
+          style={styles.Button}>
+          <Text style={styles.buttonText}>Log Out</Text>
         </TouchableOpacity>
   </View>
         );
@@ -55,33 +55,13 @@ container: {
 },
 logo:{
   fontWeight:"bold",
-  fontSize:50,
+  fontSize: 40,
   color:"#fb5b5a",
-  marginBottom:40
+  marginBottom: 40
 },
-inputView:{
+Button:{
   width:"80%",
-  backgroundColor:"white",
-  borderRadius:25,
-  height:50,
-  marginBottom:20,
-  justifyContent:"center",
-  padding:20
-},
-inputText:{
-  height:50,
-  color:"black"
-},
-signUpText:{
-    color:"red"
-},
-forgotText:{
-  color:"red",
-  fontSize:14
-},
-loginBtn:{
-  width:"80%",
-  backgroundColor:"green",
+  backgroundColor:"#fb5b5a",
   borderRadius:25,
   height:50,
   alignItems:"center",
@@ -89,8 +69,9 @@ loginBtn:{
   marginTop:40,
   marginBottom:10
 },
-loginText:{
-  color:"white"
+buttonText:{
+  color:"white",
+  fontWeight:"bold",
 }
 });
 

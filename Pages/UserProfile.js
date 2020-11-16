@@ -29,7 +29,7 @@ render() {
         <TouchableOpacity  onPress={() =>
             this.props.navigation.navigate('ChangePassword', { email: this.props.route.params.email })}
               style={styles.userButton}>
-              <Text style={styles.loginText}>Change Password</Text>
+              <Text style={styles.buttonText}>Change Password</Text>
             </TouchableOpacity>
             <TouchableOpacity  onPress={() =>
             this.props.navigation.navigate('UpdateInfo', { ID: this.props.route.params.ID,
@@ -37,7 +37,7 @@ render() {
                                                            address: this.props.route.params.address,
                                                            contactNo: this.props.route.params.contactNo})}
               style={styles.userButton}>
-              <Text style={styles.loginText}>Update Details</Text>
+              <Text style={styles.buttonText}>Update Details</Text>
             </TouchableOpacity>
   </View>
     );
@@ -51,15 +51,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    subContainer: {
-        flex: 1,
-        backgroundColor: '#00A9CE',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     logo: {
         fontWeight: "bold",
-        fontSize: 50,
+        fontSize: 45,
         color: "#fb5b5a",
         marginBottom: 40
     },
@@ -82,7 +76,7 @@ const styles = StyleSheet.create({
     },
     userButton:{
         width:"80%",
-        backgroundColor:"green",
+        backgroundColor:"#fb5b5a",
         borderRadius:25,
         height:50,
         alignItems:"center",
@@ -92,7 +86,7 @@ const styles = StyleSheet.create({
       },
     text:{
         color: "#fb5b5a",
-        fontSize: 20,
+        fontSize: 22,
         textTransform: "uppercase",
         fontWeight:"bold",
     },
@@ -100,18 +94,10 @@ const styles = StyleSheet.create({
         color: "#fb5b5a",
         fontSize: 16,
     },
-    loginBtn:{
-        width:"80%",
-        backgroundColor:"green",
-        borderRadius:25,
-        height:50,
-        alignItems:"center",
-        justifyContent:"center",
-        marginTop:40,
-        marginBottom:10
-      },
-      loginText:{
-        color:"white"
+      buttonText:{
+        color:"white",
+        fontWeight: "bold",
+        fontSize: 18,
       }
 });
 

@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     },
     registerBtn: {
         width: "80%",
-        backgroundColor: "red",
+        backgroundColor: "#fb5b5a",
         borderRadius: 25,
         height: 50,
         alignItems: "center",
@@ -220,7 +220,9 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     forgotPasswordText: {
-        color: "white"
+        color: "white", 
+        fontSize: 18,
+        fontWeight: "bold",
     }
 });
 

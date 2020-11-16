@@ -86,11 +86,11 @@ class Login extends React.Component {
             </TouchableOpacity>
             <TouchableOpacity  onPress={this.UserLoginFunction}
               style={styles.loginBtn}>
-              <Text style={styles.loginText}>LOGIN</Text>
+              <Text style={styles.loginText}>Log in</Text>
             </TouchableOpacity>
             <TouchableOpacity  onPress={() =>
             this.props.navigation.navigate('SignUp')}>
-              <Text style={styles.signUpText}>Signup</Text>
+              <Text style={styles.signUpText}>Sign Up</Text>
             </TouchableOpacity>
       </View>
     );
@@ -125,7 +125,8 @@ const styles = StyleSheet.create({
       color:"black"
     },
     signUpText:{
-        color:"red"
+      color:"red",
+      textTransform: "uppercase",
     },
     forgotText:{
       color:"red",
@@ -142,7 +143,9 @@ const styles = StyleSheet.create({
       marginBottom:10
     },
     loginText:{
-      color:"white"
+      color:"white",
+      fontWeight: "bold",
+      fontSize: 18
     }
   });
 

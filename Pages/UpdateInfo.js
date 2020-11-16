@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     },
     updateButton: {
         width: "80%",
-        backgroundColor: "red",
+        backgroundColor: "#fb5b5a",
         borderRadius: 25,
         height: 50,
         alignItems: "center",
@@ -145,7 +145,9 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     updateText: {
-        color: "white"
+        color: "white", 
+        fontWeight: "bold",
+        fontSize: 18
     }
 });
 
