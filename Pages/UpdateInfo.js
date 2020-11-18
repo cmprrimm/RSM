@@ -5,9 +5,9 @@ import { Alert } from 'react-native';
 
 class UpdateInfo extends React.Component {
     state = {
-        email: "",
-        address: "",
-        contactNo: "",
+        email: this.props.route.params.email,
+        address: this.props.route.params.address,
+        contactNo: this.props.route.params.contactNo,
     }
 
         UpdateInfoFunction = () =>{
@@ -102,6 +102,10 @@ class UpdateInfo extends React.Component {
                 <TouchableOpacity onPress={ this.UpdateInfoFunction }
                   style={styles.updateButton}>
                   <Text style={styles.updateText}>Update Information</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('UserProfile')}
+                  style={styles.updateButton}>
+                  <Text style={styles.updateText}>Back</Text>
                 </TouchableOpacity>
             </View >
         );

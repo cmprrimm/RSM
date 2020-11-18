@@ -24,7 +24,6 @@ render() {
             <Text></Text>
             <Text style={styles.text}>Address</Text>
             <Text style={[styles.subText, { marginBottom: 40 }]}>{this.props.route.params.address}</Text>
-            
         </View>
         <TouchableOpacity  onPress={() =>
             this.props.navigation.navigate('ChangePassword', { email: this.props.route.params.email })}
@@ -38,6 +37,13 @@ render() {
                                                            contactNo: this.props.route.params.contactNo})}
               style={styles.userButton}>
               <Text style={styles.buttonText}>Update Details</Text>
+            </TouchableOpacity>
+            <TouchableOpacity  onPress={() =>
+            this.props.navigation.navigate('Home', { email: this.props.route.params.email,
+                                                     address: this.props.route.params.address,
+                                                     contactNo: this.props.route.params.contactNo})}
+              style={styles.userButton}>
+              <Text style={styles.buttonText}>Home</Text>
             </TouchableOpacity>
   </View>
     );

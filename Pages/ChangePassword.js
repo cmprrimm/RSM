@@ -93,6 +93,10 @@ class ChangePassword extends React.Component {
                     style={styles.changePasswordButton}>
                     <Text style={styles.changePasswordText}>Change Password</Text>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('UserProfile')}
+                    style={styles.changePasswordButton}>
+                    <Text style={styles.changePasswordText}>Back</Text>
+                </TouchableOpacity>
             </View >
         );
     }

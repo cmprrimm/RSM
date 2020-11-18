@@ -155,6 +155,10 @@ class SignUp extends React.Component {
                   style={styles.registerBtn}>
                   <Text style={styles.signUpText}>Register</Text>
                 </TouchableOpacity>
+                <TouchableOpacity  onPress={() => this.props.navigation.navigate('Login')}
+                  style={styles.registerBtn}>
+                  <Text style={styles.signUpText}>Back</Text>
+                </TouchableOpacity>
             </View >
         );
     }

@@ -6,7 +6,6 @@ import SignUp from './Pages/SignUp';
 import Login from './Pages/Login';
 import ForgotPassword from './Pages/ForgotPassword';
 import Home from './Pages/Home';
-import Logout from './Pages/Logout';
 import UserProfile from './Pages/UserProfile';
 import UpdateSymptoms from './Pages/UpdateSymptoms';
 import ChangePassword from './Pages/ChangePassword';
@@ -37,10 +36,6 @@ export default class App extends React.Component {
           <Stack.Screen
             name="Home"
             component={Home}
-          />
-          <Stack.Screen
-            name="Logout"
-            component={Logout}
           />
           <Stack.Screen
             name="UserProfile"

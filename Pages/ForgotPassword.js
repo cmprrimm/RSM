@@ -81,6 +81,10 @@ class CheckUser extends React.Component {
                     style={styles.registerBtn}>
                     <Text style={styles.forgotPasswordText}>Reset Password</Text>
                 </TouchableOpacity>
+                <TouchableOpacity  onPress={() => this.props.navigation.navigate('Login')}
+                    style={styles.registerBtn}>
+                    <Text style={styles.forgotPasswordText}>Back</Text>
+                </TouchableOpacity>
             </View >
         );
     }
@@ -177,6 +181,10 @@ class ResetPassword extends React.Component {
                 <TouchableOpacity  onPress={ this.ResetPasswordFunction }
                     style={styles.registerBtn}>
                     <Text style={styles.forgotPasswordText}>Reset Password</Text>
+                </TouchableOpacity>
+                <TouchableOpacity  onPress={() => this.props.navigation.navigate('CheckUser')}
+                    style={styles.registerBtn}>
+                    <Text style={styles.forgotPasswordText}>Back</Text>
                 </TouchableOpacity>
             </View >
         );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, TouchableHighlight} from 'react-native';
+import { Alert } from 'react-native';
 // import CheckBox from '@react-native-community/checkbox';
 
 class UpdateSymptoms extends React.Component {
@@ -43,10 +44,63 @@ class UpdateSymptoms extends React.Component {
 
     CovidSymptoms(flag, button) {
         if (flag == 1) {
-            this.setState({ covidSymptoms: true });
+            this.setState({ CovidSymptoms: true });
         }
-        this.setState({ covidSymptoms: button })
+        this.setState({ CovidSymptoms: button })
     }
+
+    UpdateSymptomsFunction = () =>{
+
+         const { Smoker }  = this.state ;
+         const { Pregnant }  = this.state ;
+         const { MedicalConditions }  = this.state ;
+         const { Hospitalised }  = this.state ;
+         const { CovidSymptoms }  = this.state ;
+
+         fetch('https://rsmcovidapp.000webhostapp.com/UpdateSymptoms.php', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+
+                email: this.props.route.params.email,
+
+                Smoker: Smoker,
+
+                Pregnant: Pregnant,
+
+                MedicalConditions: MedicalConditions,
+
+                Hospitalised: Hospitalised,
+
+                CovidSymptoms: CovidSymptoms
+
+              })
+
+         }).then((response) => response.json())
+               .then((responseJson) => {
+
+                 // If server response message same as Data Matched
+                if(responseJson === 'Symptoms Updated')
+                 {
+
+                     //Then Alert User and send to Home page.
+                     { if (this.state.CovidSymptoms === '1') { this.props.navigation.navigate('CovidSymptoms') } else { this.props.navigation.navigate('Home') } };
+
+                 }
+                 else{
+
+                   Alert.alert(responseJson);
+                 }
+
+               }).catch((error) => {
+                console.error(error)
+               });
+
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -101,7 +155,7 @@ class UpdateSymptoms extends React.Component {
                     <TouchableHighlight
                         onPress={() => this.CovidSymptoms('any flag', '1')}
                         underlayColor="red">
-                        <View style={{ backgroundColor: (this.state.covidSymptoms === '1' ? '#fb5b5a' : 'white') }}>
+                        <View style={{ backgroundColor: (this.state.CovidSymptoms === '1' ? '#fb5b5a' : 'white') }}>
                             <Text style={styles.text1}>
                                 Click here if you are experiencing any COVID-19 Symptoms.
                 </Text>
@@ -111,9 +165,13 @@ class UpdateSymptoms extends React.Component {
                         </View>
                     </TouchableHighlight>
                 </View>
-                <TouchableOpacity onPress={() => { if (this.state.covidSymptoms === '1') { this.props.navigation.navigate('CovidSymptoms') } else { this.props.navigation.navigate('Home') } }}
+                <TouchableOpacity onPress={ this.UpdateSymptomsFunction }
                     style={styles.nextBtn}>
                     <Text style={styles.nextText}>Next</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}
+                  style={styles.nextBtn}>
+                  <Text style={styles.nextText}>Home</Text>
                 </TouchableOpacity>
             </View >
         );
