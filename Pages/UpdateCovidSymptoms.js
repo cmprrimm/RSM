@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight} from 'react-native';
 import { Alert } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-class UpdateSymptoms extends React.Component {
+class UpdateCovidSymptoms extends React.Component {
 
     state = {
         selected: null,
@@ -102,16 +104,17 @@ class UpdateSymptoms extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <Text style={styles.logo}>Health Information</Text>
                 <Text style={styles.subLogo}>Select the choices that apply to you </Text>
+                <ScrollView style={styles.scroll}>
                 <View style={styles.inputView} >
                     <TouchableHighlight
                         onPress={() => this.Smoker('any flag', '1')}
                         underlayColor="red">
                         <View style={{ backgroundColor: (this.state.smoker === '1' ? '#fb5b5a' : 'white') }}>
                             <Text style={styles.text}>
-                                Click here if you smoke.
+                                Hi my name is nicholas scarth
                 </Text>
                         </View>
                     </TouchableHighlight>
@@ -122,7 +125,7 @@ class UpdateSymptoms extends React.Component {
                         underlayColor="red">
                         <View style={{ backgroundColor: (this.state.pregnant === '1' ? '#fb5b5a' : 'white') }}>
                             <Text style={styles.text}>
-                                Click here if you're Pregnant.
+                                TEST
                 </Text>
                         </View>
                     </TouchableOpacity>
@@ -133,7 +136,7 @@ class UpdateSymptoms extends React.Component {
                         underlayColor="red">
                         <View style={{ backgroundColor: (this.state.MedicalConditions === '1' ? '#fb5b5a' : 'white') }}>
                             <Text style={styles.text1}>
-                                Click here if you have any underlying medical condtions.
+                                TEST
                 </Text>
                         </View>
                     </TouchableHighlight>
@@ -144,7 +147,7 @@ class UpdateSymptoms extends React.Component {
                         backgroundColor="red">
                         <View style={{ backgroundColor: (this.state.Hospitalised === '1' ? '#fb5b5a' : 'white') }}>
                             <Text style={styles.text1}>
-                                Click here if you have recently been hospitlised in the past 3 months.
+                                TEST
                 </Text>
                         </View>
                     </TouchableHighlight>
@@ -155,10 +158,10 @@ class UpdateSymptoms extends React.Component {
                         underlayColor="red">
                         <View style={{ backgroundColor: (this.state.CovidSymptoms === '1' ? '#fb5b5a' : 'white') }}>
                             <Text style={styles.text1}>
-                                Click here if you are experiencing any COVID-19 Symptoms.
+                                TEST
                 </Text>
                             <Text style={styles.subText}>
-                                If selected further questions will be asked relating to COVID-19 symptoms.
+                                TEST
                 </Text>
                         </View>
                     </TouchableHighlight>
@@ -172,7 +175,8 @@ class UpdateSymptoms extends React.Component {
                   style={styles.nextBtn}>
                   <Text style={styles.nextText}>Home</Text>
                 </TouchableOpacity>
-            </View >
+            </ScrollView>
+            </SafeAreaView>
         );
     }
 }
@@ -184,11 +188,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    scroll: {
+        backgroundColor: '#00A9CE',
+        width: '80%',
+    },
     logo: {
         fontWeight: "bold",
         fontSize: 45,
         color: "#fb5b5a",
         marginBottom: 10,
+        marginTop: 20,
     },
     subLogo: {
         flexDirection: 'row',
@@ -259,4 +268,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default UpdateSymptoms;
+export default UpdateCovidSymptoms;

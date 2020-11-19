@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, StatusBar } from 'react-native';
 import { Alert } from 'react-native';
 
 class Login extends React.Component {
@@ -54,7 +54,9 @@ class Login extends React.Component {
       }
 
       render(){
+
         return (
+          // <StatusBar translucent backgroundColor="transparent">
           <View style={styles.container}>
             <Text style={styles.logo}>Patient Access</Text>
             <View style={styles.inputView} >
@@ -93,6 +95,7 @@ class Login extends React.Component {
               <Text style={styles.signUpText}>Sign Up</Text>
             </TouchableOpacity>
       </View>
+
     );
   }
 }

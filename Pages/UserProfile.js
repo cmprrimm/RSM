@@ -13,6 +13,8 @@ render() {
             <Text></Text>
             <Text style={styles.text}>Phone Number</Text>
             <Text style={styles.subText}>{this.props.route.params.contactNo}</Text>
+            <Text></Text>
+            <Text></Text>
         </View>
         <View style={styles.textViewDetails} >
             <Text></Text>

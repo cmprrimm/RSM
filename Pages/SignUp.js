@@ -74,7 +74,7 @@ class SignUp extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+                <View style={styles.container}>
                 <Text style={styles.logo}>Register!</Text>
                 <View style={styles.inputView} >
                     <TextInput
