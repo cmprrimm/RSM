@@ -39,7 +39,12 @@ class Login extends React.Component {
                                                          DOB: responseJson[4],
                                                          address: responseJson[5],
                                                          gender: responseJson[6],
-                                                         contactNo: responseJson[7]});
+                                                         contactNo: responseJson[7],
+                                                         smoker: responseJson[8],
+                                                         pregnant: responseJson[9],
+                                                         medicalConditions: responseJson[10],
+                                                         hospitalised: responseJson[11],
+                                                         covidSymptoms: responseJson[12]});
 
             }
             else{

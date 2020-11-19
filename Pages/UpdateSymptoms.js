@@ -6,55 +6,55 @@ class UpdateSymptoms extends React.Component {
 
     state = {
         selected: null,
-        smoker: '',
-        pregnant: '',
-        MedicalConditions: '',
-        Hospitalised:'',
-        CovidSymptoms:''
+        smoker: this.props.route.params.smoker,
+        pregnant: this.props.route.params.pregnant,
+        medicalConditions: this.props.route.params.medicalConditions,
+        hospitalised: this.props.route.params.hospitalised,
+        covidSymptoms: this.props.route.params.covidSymptoms
     };
 
-    Smoker(flag, button) {
+    smoker(flag, button) {
         if (flag == 1) {
             this.setState({ smoker: true });
         }
         this.setState({ smoker: button })
     }
 
-    Pregnant(flag, button) {
+    pregnant(flag, button) {
         if (flag == 1) {
             this.setState({ pregnant: true });
         }
         this.setState({ pregnant: button })
     }
 
-    MedicalConditions(flag, button) {
+    medicalConditions(flag, button) {
         if (flag == 1) {
-            this.setState({ MedicalConditions: true });
+            this.setState({ medicalConditions: true });
         }
-        this.setState({ MedicalConditions: button })
+        this.setState({ medicalConditions: button })
     }
 
-    Hospitalised(flag, button) {
+    hospitalised(flag, button) {
         if (flag == 1) {
-            this.setState({ Hospitalised: true });
+            this.setState({ hospitalised: true });
         }
-        this.setState({ Hospitalised: button })
+        this.setState({ hospitalised: button })
     }
 
-    CovidSymptoms(flag, button) {
+    covidSymptoms(flag, button) {
         if (flag == 1) {
-            this.setState({ CovidSymptoms: true });
+            this.setState({ covidSymptoms: true });
         }
-        this.setState({ CovidSymptoms: button })
+        this.setState({ covidSymptoms: button })
     }
 
     UpdateSymptomsFunction = () =>{
 
-         const { Smoker }  = this.state ;
-         const { Pregnant }  = this.state ;
-         const { MedicalConditions }  = this.state ;
-         const { Hospitalised }  = this.state ;
-         const { CovidSymptoms }  = this.state ;
+         const { smoker }  = this.state ;
+         const { pregnant }  = this.state ;
+         const { medicalConditions }  = this.state ;
+         const { hospitalised }  = this.state ;
+         const { covidSymptoms }  = this.state ;
 
          fetch('https://rsmcovidapp.000webhostapp.com/UpdateSymptoms.php', {
               method: 'POST',
@@ -64,20 +64,19 @@ class UpdateSymptoms extends React.Component {
               },
               body: JSON.stringify({
 
-                email: this.props.route.params.email,
+                ID: this.props.route.params.ID,
 
-                Smoker: Smoker,
+                smoker: smoker,
 
-                Pregnant: Pregnant,
+                pregnant: pregnant,
 
-                MedicalConditions: MedicalConditions,
+                medicalConditions: medicalConditions,
 
-                Hospitalised: Hospitalised,
+                hospitalised: hospitalised,
 
-                CovidSymptoms: CovidSymptoms
+                covidSymptoms: covidSymptoms
 
               })
-
          }).then((response) => response.json())
                .then((responseJson) => {
 
@@ -85,8 +84,22 @@ class UpdateSymptoms extends React.Component {
                 if(responseJson === 'Symptoms Updated')
                  {
 
-                     //Then Alert User and send to Home page.
-                     { if (this.state.CovidSymptoms === '1') { this.props.navigation.navigate('CovidSymptoms') } else { this.props.navigation.navigate('Home') } };
+                     //If user has COVID symptoms send to COVID page if not send to home page
+                     if (this.state.covidSymptoms === '1') {
+                        this.props.navigation.navigate('UpdateCovidSymptoms', { ID: this.props.route.params.ID,
+                                                                                smoker: smoker,
+                                                                                pregnant: pregnant,
+                                                                                medicalConditions: medicalConditions,
+                                                                                hospitalised: hospitalised,
+                                                                                covidSymptoms: covidSymptoms});
+                     }
+                     else {
+                        this.props.navigation.navigate('Home', { smoker: smoker,
+                                                                 pregnant: pregnant,
+                                                                 medicalConditions: medicalConditions,
+                                                                 hospitalised: hospitalised,
+                                                                 covidSymptoms: covidSymptoms});
+                     }
 
                  }
                  else{
@@ -107,7 +120,7 @@ class UpdateSymptoms extends React.Component {
                 <Text style={styles.subLogo}>Select the choices that apply to you </Text>
                 <View style={styles.inputView} >
                     <TouchableHighlight
-                        onPress={() => this.Smoker('any flag', '1')}
+                        onPress={() => this.smoker('any flag', '1')}
                         underlayColor="red">
                         <View style={{ backgroundColor: (this.state.smoker === '1' ? '#fb5b5a' : 'white') }}>
                             <Text style={styles.text}>
@@ -118,7 +131,7 @@ class UpdateSymptoms extends React.Component {
                 </View>
                 <View style={styles.inputView} >
                     <TouchableOpacity
-                        onPress={() => this.Pregnant('any flag', '1')}
+                        onPress={() => this.pregnant('any flag', '1')}
                         underlayColor="red">
                         <View style={{ backgroundColor: (this.state.pregnant === '1' ? '#fb5b5a' : 'white') }}>
                             <Text style={styles.text}>
@@ -129,9 +142,9 @@ class UpdateSymptoms extends React.Component {
                 </View>
                 <View style={styles.inputView} >
                     <TouchableHighlight
-                        onPress={() => this.MedicalConditions('any flag', '1') }
+                        onPress={() => this.medicalConditions('any flag', '1') }
                         underlayColor="red">
-                        <View style={{ backgroundColor: (this.state.MedicalConditions === '1' ? '#fb5b5a' : 'white') }}>
+                        <View style={{ backgroundColor: (this.state.medicalConditions === '1' ? '#fb5b5a' : 'white') }}>
                             <Text style={styles.text1}>
                                 Click here if you have any underlying medical condtions.
                 </Text>
@@ -140,20 +153,20 @@ class UpdateSymptoms extends React.Component {
                 </View>
                 <View style={styles.inputView} >
                     <TouchableHighlight
-                        onPress={() => this.Hospitalised('any flag', '1')}
+                        onPress={() => this.hospitalised('any flag', '1')}
                         backgroundColor="red">
-                        <View style={{ backgroundColor: (this.state.Hospitalised === '1' ? '#fb5b5a' : 'white') }}>
+                        <View style={{ backgroundColor: (this.state.hospitalised === '1' ? '#fb5b5a' : 'white') }}>
                             <Text style={styles.text1}>
-                                Click here if you have recently been hospitlised in the past 3 months.
+                                Click here if you have recently been hospitalised in the past 3 months.
                 </Text>
                         </View>
                     </TouchableHighlight>
                 </View>
                 <View style={styles.inputView1} >
                     <TouchableHighlight
-                        onPress={() => this.CovidSymptoms('any flag', '1')}
+                        onPress={() => this.covidSymptoms('any flag', '1')}
                         underlayColor="red">
-                        <View style={{ backgroundColor: (this.state.CovidSymptoms === '1' ? '#fb5b5a' : 'white') }}>
+                        <View style={{ backgroundColor: (this.state.covidSymptoms === '1' ? '#fb5b5a' : 'white') }}>
                             <Text style={styles.text1}>
                                 Click here if you are experiencing any COVID-19 Symptoms.
                 </Text>
@@ -164,7 +177,6 @@ class UpdateSymptoms extends React.Component {
                     </TouchableHighlight>
                 </View>
                 <TouchableOpacity onPress={ this.UpdateSymptomsFunction }
-                    onPress={() => this.props.navigation.navigate('UpdateCovidSymptoms')}
                     style={styles.nextBtn}>
                     <Text style={styles.nextText}>Next</Text>
                 </TouchableOpacity>
