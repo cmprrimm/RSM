@@ -62,7 +62,8 @@ logo:{
   fontWeight:"bold",
   fontSize: 40,
   color:"#fb5b5a",
-  marginBottom: 40
+  marginBottom: 40,
+  marginLeft: 20,
 },
 Button:{
   width:"80%",

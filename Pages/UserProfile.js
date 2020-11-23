@@ -61,9 +61,11 @@ const styles = StyleSheet.create({
     },
     logo: {
         fontWeight: "bold",
-        fontSize: 45,
+        fontSize: 35,
         color: "#fb5b5a",
-        marginBottom: 40
+        marginBottom: 40, 
+        marginTop: 40,
+        marginLeft: 10
     },
     textViewContact:{
         width:"80%",

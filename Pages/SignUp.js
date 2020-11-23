@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ScrollView, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import { Alert } from 'react-native';
 
@@ -74,6 +74,10 @@ class SignUp extends React.Component {
 
     render() {
         return (
+            <KeyboardAvoidingView
+                behavior={Platform.OS == "ios" ? "padding" : "height"}
+                >
+            <ScrollView style={styles.scroll}>
                 <View style={styles.container}>
                 <Text style={styles.logo}>Register!</Text>
                 <View style={styles.inputView} >
@@ -149,7 +153,8 @@ class SignUp extends React.Component {
                         autoCompleteType="tel"
                         returnKeyType="go"
                         onSubmitEditing={ () => this.props.navigation.navigate('Login') }
-                        onChangeText={text => this.setState({ contactNo: text })} />
+                        onChangeText={text => this.setState({ contactNo: text })}
+                        />
                 </View>
                 <TouchableOpacity onPress={this.UserRegistrationFunction}
                   style={styles.registerBtn}>
@@ -160,6 +165,8 @@ class SignUp extends React.Component {
                   <Text style={styles.signUpText}>Back</Text>
                 </TouchableOpacity>
             </View >
+            </ScrollView>
+            </KeyboardAvoidingView>
         );
     }
 }
@@ -176,7 +183,11 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 50,
         color: "#fb5b5a",
-        marginBottom: 40
+        marginBottom: 40,
+        marginTop: 50
+    },
+    scroll:{
+        backgroundColor: '#00A9CE',
     },
     inputView: {
         width: "80%",

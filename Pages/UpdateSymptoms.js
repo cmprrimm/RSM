@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button, TouchableHighlight, ScrollView} from 'react-native';
 import { Alert } from 'react-native';
 
 class UpdateSymptoms extends React.Component {
@@ -27,18 +27,40 @@ class UpdateSymptoms extends React.Component {
         this.setState({ pregnant: button })
     }
 
-    medicalConditions(flag, button) {
-        if (flag == 1) {
-            this.setState({ medicalConditions: true });
-        }
-        this.setState({ medicalConditions: button })
-    }
 
     hospitalised(flag, button) {
         if (flag == 1) {
             this.setState({ hospitalised: true });
         }
         this.setState({ hospitalised: button })
+    }
+
+    cardioProblem(flag, button) {
+        if (flag == 1) {
+            this.setState({ cardioProblem: true });
+        }
+        this.setState({ cardioProblem: button })
+    }
+
+    disability(flag, button) {
+        if (flag == 1) {
+            this.setState({ disability: true });
+        }
+        this.setState({ disability: button })
+    }
+
+    cancerTreatment(flag, button) {
+        if (flag == 1) {
+            this.setState({ cancerTreatment: true });
+        }
+        this.setState({ cancerTreatment: button })
+    }
+
+    highRiskInfection(flag, button) {
+        if (flag == 1) {
+            this.setState({ highRiskInfection: true });
+        }
+        this.setState({ highRiskInfection: button })
     }
 
     covidSymptoms(flag, button) {
@@ -94,6 +116,7 @@ class UpdateSymptoms extends React.Component {
                                                                                 covidSymptoms: covidSymptoms});
                      }
                      else {
+                        Alert.alert("This information has now been submitted");
                         this.props.navigation.navigate('Home', { smoker: smoker,
                                                                  pregnant: pregnant,
                                                                  medicalConditions: medicalConditions,
@@ -106,15 +129,17 @@ class UpdateSymptoms extends React.Component {
 
                    Alert.alert(responseJson);
                  }
+                 
 
                }).catch((error) => {
                 console.error(error)
-               });
+               })
 
     }
 
     render() {
         return (
+            <ScrollView style={styles.scroll}>
             <View style={styles.container}>
                 <Text style={styles.logo}>Health Information</Text>
                 <Text style={styles.subLogo}>Select the choices that apply to you </Text>
@@ -142,17 +167,6 @@ class UpdateSymptoms extends React.Component {
                 </View>
                 <View style={styles.inputView} >
                     <TouchableHighlight
-                        onPress={() => this.medicalConditions('any flag', '1') }
-                        underlayColor="red">
-                        <View style={{ backgroundColor: (this.state.medicalConditions === '1' ? '#fb5b5a' : 'white') }}>
-                            <Text style={styles.text1}>
-                                Click here if you have any underlying medical condtions.
-                </Text>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-                <View style={styles.inputView} >
-                    <TouchableHighlight
                         onPress={() => this.hospitalised('any flag', '1')}
                         backgroundColor="red">
                         <View style={{ backgroundColor: (this.state.hospitalised === '1' ? '#fb5b5a' : 'white') }}>
@@ -162,6 +176,62 @@ class UpdateSymptoms extends React.Component {
                         </View>
                     </TouchableHighlight>
                 </View>
+                <Text></Text>
+                <Text></Text>
+                <Text style={styles.subLogo}>Select the medical conditions that apply to you below</Text>
+                <View style={styles.inputView1} >
+                    <TouchableHighlight
+                        onPress={() => this.cardioProblem('any flag', '1')}
+                        underlayColor="red">
+                        <View style={{ backgroundColor: (this.state.cardioProblem === '1' ? '#fb5b5a' : 'white') }}>
+                            <Text style={styles.text1}>
+                                Click here if you have a cardio problem.
+                </Text>
+                            <Text style={styles.subText}>
+                                E.G Heart or Lung problem or anything that affects your breathing.
+                </Text>
+                        </View>
+                    </TouchableHighlight>
+                </View>
+                <View style={styles.inputView} >
+                    <TouchableOpacity
+                        onPress={() => this.disability('any flag', '1')}
+                        underlayColor="red">
+                        <View style={{ backgroundColor: (this.state.disability === '1' ? '#fb5b5a' : 'white') }}>
+                            <Text style={styles.text}>
+                                Click here if you have a disability. 
+                </Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.inputView} >
+                    <TouchableHighlight
+                        onPress={() => this.cancerTreatment('any flag', '1')}
+                        backgroundColor="red">
+                        <View style={{ backgroundColor: (this.state.cancerTreatment === '1' ? '#fb5b5a' : 'white') }}>
+                            <Text style={styles.text1}>
+                                Click here if you are currently undergoing treatment for Cancer.
+                </Text>
+                        </View>
+                    </TouchableHighlight>
+                </View>
+                <View style={styles.inputView1} >
+                    <TouchableHighlight
+                        onPress={() => this.highRiskInfection('any flag', '1')}
+                        backgroundColor="red">
+                        <View style={{ backgroundColor: (this.state.highRiskInfection === '1' ? '#fb5b5a' : 'white') }}>
+                            <Text style={styles.text1}>
+                                Click here if you are at high risk of catching infections.
+                </Text>
+                <Text style={styles.subText}>
+                                Such as SCID or sickle cell, or high doses of steroids or immunosuppressant medicine.
+                </Text>
+                        </View>
+                    </TouchableHighlight>
+                </View>
+                <Text></Text>
+                <Text></Text>
+                <Text style={styles.subLogo}>COVID-19 Questions</Text>
                 <View style={styles.inputView1} >
                     <TouchableHighlight
                         onPress={() => this.covidSymptoms('any flag', '1')}
@@ -181,10 +251,11 @@ class UpdateSymptoms extends React.Component {
                     <Text style={styles.nextText}>Next</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')}
-                  style={styles.nextBtn}>
+                  style={styles.homeButton}>
                   <Text style={styles.nextText}>Home</Text>
                 </TouchableOpacity>
             </View >
+            </ScrollView>
         );
     }
 }
@@ -198,17 +269,18 @@ const styles = StyleSheet.create({
     },
     logo: {
         fontWeight: "bold",
-        fontSize: 45,
+        fontSize: 35,
         color: "#fb5b5a",
         marginBottom: 10,
+        marginTop: 50,
     },
     subLogo: {
         flexDirection: 'row',
         fontWeight: "bold",
-        fontSize: 25,
+        fontSize: 20,
         color: "#fb5b5a",
         marginBottom: 20,
-        marginLeft: 20,
+        alignContent: "center",
         flexWrap: 'wrap',
         textAlign: 'center',
     },
@@ -237,7 +309,7 @@ const styles = StyleSheet.create({
     inputView: {
         width: "80%",
         backgroundColor: "white",
-        borderRadius: 25,
+        borderRadius: 15,
         height: 65,
         marginBottom: 10,
         justifyContent: "center",
@@ -247,7 +319,7 @@ const styles = StyleSheet.create({
     inputView1: {
         width: "80%",
         backgroundColor: "white",
-        borderRadius: 25,
+        borderRadius: 15,
         height: 110,
         marginBottom: 10,
         justifyContent: "center",
@@ -264,11 +336,24 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10
     },
+    homeButton: {
+        width: "80%",
+        backgroundColor: "#fb5b5a",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop: 10,
+        marginBottom: 40,
+    },
     nextText: {
         color: "white", 
         fontWeight: "bold",
         fontSize: 18
-    }
+    },
+    scroll:{
+        backgroundColor: '#00A9CE',
+    },
 });
 
 export default UpdateSymptoms;

@@ -11,6 +11,7 @@ import UpdateSymptoms from './Pages/UpdateSymptoms';
 import ChangePassword from './Pages/ChangePassword';
 import UpdateInfo from './Pages/UpdateInfo';
 import UpdateCovidSymptoms from './Pages/UpdateCovidSymptoms';
+import NoSymptoms from './Pages/NoSymptoms';
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,10 @@ export default class App extends React.Component {
           <Stack.Screen
             name="UpdateCovidSymptoms"
             component={UpdateCovidSymptoms}
+          />
+          <Stack.Screen
+            name="NoSymptoms"
+            component={NoSymptoms}
           />
         </Stack.Navigator>
       </NavigationContainer>
