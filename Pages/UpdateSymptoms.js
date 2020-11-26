@@ -139,10 +139,12 @@ class UpdateSymptoms extends React.Component {
 
     render() {
         return (
-            <ScrollView style={styles.scroll}>
+            
             <View style={styles.container}>
                 <Text style={styles.logo}>Health Information</Text>
                 <Text style={styles.subLogo}>Select the choices that apply to you </Text>
+                <ScrollView style={styles.scroll}>
+                <View style={styles.container}>
                 <View style={styles.inputView} >
                     <TouchableHighlight
                         onPress={() => this.smoker('any flag', '1')}
@@ -254,8 +256,9 @@ class UpdateSymptoms extends React.Component {
                   style={styles.homeButton}>
                   <Text style={styles.nextText}>Home</Text>
                 </TouchableOpacity>
+                </View>
+                </ScrollView>
             </View >
-            </ScrollView>
         );
     }
 }

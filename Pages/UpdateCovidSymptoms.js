@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableHighlight} from 'react-native';
 import { Alert } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -97,7 +97,7 @@ class UpdateCovidSymptoms extends React.Component {
                         onPress={() => this.cough('any flag', '1')}
                         underlayColor="red">
                         <View style={{ backgroundColor: (this.state.cough === '1' ? '#fb5b5a' : 'white') }}>
-                            <Text style={styles.text1}>
+                            <Text style={styles.text}>
                                 Do you have a continuous cough
                 </Text>
                             <Text style={styles.subText}>
@@ -112,7 +112,7 @@ class UpdateCovidSymptoms extends React.Component {
                         onPress={() => this.highTemperature('any flag', '1')}
                         underlayColor="red">
                         <View style={{ backgroundColor: (this.state.highTemperature === '1' ? '#fb5b5a' : 'white') }}>
-                            <Text style={styles.text1}>
+                            <Text style={styles.text}>
                                 Do you have a high temperature
                 </Text>
                             <Text style={styles.subText}>
@@ -127,7 +127,7 @@ class UpdateCovidSymptoms extends React.Component {
                         onPress={() => this.changeSmellTaste('any flag', '1')}
                         underlayColor="red">
                         <View style={{ backgroundColor: (this.state.changeSmellTaste === '1' ? '#fb5b5a' : 'white') }}>
-                            <Text style={styles.text1}>
+                            <Text style={styles.text}>
                                 A change to your sense of smell or taste
                 </Text>
                             <Text style={styles.subText}>
@@ -136,6 +136,19 @@ class UpdateCovidSymptoms extends React.Component {
                 </Text>
                         </View>
                     </TouchableHighlight>
+                    </View>
+                <View style={styles.textInputView} >
+                <Text style={styles.text}>
+                        Please enter the amount of days you have had symptoms.
+                </Text>
+                <Text></Text>
+                <TextInput  
+                    style={styles.daysSubText}
+                    placeholder="Here" 
+                    placeholderTextColor="black"
+                    keyboardType="number-pad"
+                    onSubmitEditing={() => { this.password.focus(); }}
+                    onChangeText={text => this.setState({email:text})}/>
                 </View>
                 <TouchableOpacity onPress={ this.UpdateSymptomsFunction }
                     onPress={() => this.props.navigation.navigate('UpdateCovidSymptoms')}
@@ -182,14 +195,6 @@ const styles = StyleSheet.create({
         alignContent: "center"
     },
     text: {
-        height: 20,
-        color: "black",
-        fontSize: 14.5,
-        fontWeight: "bold",
-        flexWrap: 'wrap',
-        textAlign: 'center',
-    },
-    text1: {
         height: 40,
         color: "black",
         fontSize: 14.5,
@@ -200,6 +205,12 @@ const styles = StyleSheet.create({
     subText: {
         color: "black",
         fontSize: 13,
+        flexWrap: 'wrap',
+        textAlign: 'center',
+    },
+    daysSubText: {
+        color: "black",
+        fontSize: 15,
         flexWrap: 'wrap',
         textAlign: 'center',
     },
@@ -218,6 +229,16 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 15,
         height: 135,
+        marginBottom: 10,
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: 'center',
+    },
+    textInputView: {
+        width: "100%",
+        backgroundColor: "white",
+        borderRadius: 15,
+        height: 100,
         marginBottom: 10,
         justifyContent: "center",
         alignItems: "center",
@@ -251,11 +272,6 @@ const styles = StyleSheet.create({
         color: "#fb5b5a",
         fontWeight: "bold",
         fontSize: 16
-    },
-    signUpText:{
-        color: "white", 
-        fontWeight: "bold",
-        fontSize: 18
     },
 });
 
