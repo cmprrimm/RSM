@@ -71,6 +71,7 @@ class Login extends React.Component {
                 placeholderTextColor="#003f5c"
                 keyboardType="email-address"
                 autoCompleteType="email"
+                textContentType="emailAddress"
                 returnKeyType="next"
                 onSubmitEditing={() => { this.password.focus(); }}
                 onChangeText={text => this.setState({email:text})}/>
@@ -83,7 +84,9 @@ class Login extends React.Component {
                 placeholder="Password" 
                 placeholderTextColor="#003f5c"
                 autoCompleteType="password"
+                textContentType="password"
                 returnKeyType="go"
+                autoCapitalize="none"
                 onSubmitEditing={ this.UserLoginFunction }
                 onChangeText={text => this.setState({password:text})}/>
             </View>

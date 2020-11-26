@@ -4,6 +4,23 @@ import DatePicker from 'react-native-date-picker';
 import { Alert } from 'react-native';
 
 class SignUp extends React.Component {
+
+    onChanged(text){
+        let newText = '';
+        let numbers = '0123456789';
+    
+        for (var i=0; i < text.length; i++) {
+            if(numbers.indexOf(text[i]) > -1 ) {
+                newText = newText + text[i];
+            }
+            else {
+                // your call back function
+                alert("please enter numbers only");
+            }
+        }
+        this.setState({ contactNo: text });
+    }
+
     state = {
         email: "",
         password: "",
@@ -87,6 +104,7 @@ class SignUp extends React.Component {
                         placeholderTextColor="#003f5c"
                         keyboardType="email-address"
                         autoCompleteType="email"
+                        textContentType="emailAddress"
                         returnKeyType="next"
                         onSubmitEditing={() => { this.password.focus(); }}
                         onChangeText={text => this.setState({ email: text })} />
@@ -109,6 +127,8 @@ class SignUp extends React.Component {
                         placeholder="Full Name"
                         placeholderTextColor="#003f5c"
                         autoCompleteType="name"
+                        textContentType="givenName"
+                        textContentType="familyName"
                         returnKeyType="next"
                         onSubmitEditing={() => { this.address.focus(); }}
                         onChangeText={text => this.setState({ fullName: text })} />
@@ -118,6 +138,7 @@ class SignUp extends React.Component {
                         ref={(input) => { this.address = input; }}
                         style={styles.inputText}
                         placeholder="Address"
+                        textContentType="fullStreetAddress"
                         placeholderTextColor="#003f5c"
                         autoCompleteType="street-address"
                         returnKeyType="next"
@@ -150,10 +171,12 @@ class SignUp extends React.Component {
                         style={styles.inputText}
                         placeholder="Contact Number"
                         placeholderTextColor="#003f5c"
+                        textContentType="telephoneNumber"
                         autoCompleteType="tel"
                         returnKeyType="go"
                         onSubmitEditing={ () => this.props.navigation.navigate('Login') }
-                        onChangeText={text => this.setState({ contactNo: text })}
+                        onChangeText={(text)=> this.setState({ contactNo: text })}
+                        onChangeText={(text)=> this.onChanged(text)}
                         />
                 </View>
                 <TouchableOpacity onPress={this.UserRegistrationFunction}

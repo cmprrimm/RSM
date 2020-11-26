@@ -34,6 +34,22 @@ class UpdateCovidSymptoms extends React.Component {
         this.setState({ changeSmellTaste: button })
     }
 
+    onChanged(text){
+        let newText = '';
+        let numbers = '0123456789';
+    
+        for (var i=0; i < text.length; i++) {
+            if(numbers.indexOf(text[i]) > -1 ) {
+                newText = newText + text[i];
+            }
+            else {
+                // your call back function
+                alert("please enter numbers only");
+            }
+        }
+        this.setState({ myNumber: newText });
+    }
+
     UpdateSymptomsFunction = () =>{
 
          const { Smoker }  = this.state ;
@@ -147,8 +163,8 @@ class UpdateCovidSymptoms extends React.Component {
                     placeholder="Here" 
                     placeholderTextColor="black"
                     keyboardType="number-pad"
-                    onSubmitEditing={() => { this.password.focus(); }}
-                    onChangeText={text => this.setState({email:text})}/>
+                    maxLength= '2'
+                    onChangeText={(text)=> this.onChanged(text)}/>
                 </View>
                 <TouchableOpacity onPress={ this.UpdateSymptomsFunction }
                     onPress={() => this.props.navigation.navigate('UpdateCovidSymptoms')}
