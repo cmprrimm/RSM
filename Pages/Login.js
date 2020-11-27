@@ -59,7 +59,6 @@ class Login extends React.Component {
       }
 
       render(){
-
         return (
           // <StatusBar translucent backgroundColor="transparent">
           <View style={styles.container}>
@@ -72,6 +71,7 @@ class Login extends React.Component {
                 keyboardType="email-address"
                 autoCompleteType="email"
                 textContentType="emailAddress"
+                autoCapitalize="none"
                 returnKeyType="next"
                 onSubmitEditing={() => { this.password.focus(); }}
                 onChangeText={text => this.setState({email:text})}/>
@@ -103,7 +103,6 @@ class Login extends React.Component {
               <Text style={styles.signUpText}>Sign Up</Text>
             </TouchableOpacity>
       </View>
-
     );
   }
 }
