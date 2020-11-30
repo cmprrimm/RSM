@@ -17,8 +17,11 @@ class Home extends React.Component {
         this.props.navigation.navigate('UpdateSymptoms', { ID: this.props.route.params.ID,
                                                            smoker: this.props.route.params.smoker,
                                                            pregnant: this.props.route.params.pregnant,
-                                                           medicalConditions: this.props.route.params.medicalConditions,
                                                            hospitalised: this.props.route.params.hospitalised,
+                                                           cardioProblem: this.props.route.params.cardioProblem,
+                                                           disability: this.props.route.params.disability,
+                                                           cancerTreatment: this.props.route.params.cancerTreatment,
+                                                           highRiskInfection: this.props.route.params.highRiskInfection,
                                                            covidSymptoms: this.props.route.params.covidSymptoms});
       }
 

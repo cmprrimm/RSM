@@ -8,9 +8,10 @@ class UpdateCovidSymptoms extends React.Component {
 
     state = {
         selected: null,
-        cough: '',
-        highTemperature: '',
-        changeSmellTaste: '',
+        cough: "0",
+        highTemperature: "0",
+        changeSmellTaste: "0",
+        daysSubText: "0"
     };
 
     cough(flag, button) {
@@ -47,18 +48,17 @@ class UpdateCovidSymptoms extends React.Component {
                 alert("please enter numbers only");
             }
         }
-        this.setState({ myNumber: newText });
+        this.setState({ daysSubText: newText });
     }
 
-    UpdateSymptomsFunction = () =>{
+    UpdateCovidFunction = () =>{
 
-         const { Smoker }  = this.state ;
-         const { Pregnant }  = this.state ;
-         const { MedicalConditions }  = this.state ;
-         const { Hospitalised }  = this.state ;
-         const { CovidSymptoms }  = this.state ;
+         const { cough }  = this.state ;
+         const { highTemperature }  = this.state ;
+         const { changeSmellTaste }  = this.state ;
+         const { daysSubText }  = this.state ;
 
-         fetch('https://rsmcovidapp.000webhostapp.com/UpdateSymptoms.php', {
+         fetch('https://rsmcovidapp.000webhostapp.com/UpdateCovid.php', {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',
@@ -66,17 +66,15 @@ class UpdateCovidSymptoms extends React.Component {
               },
               body: JSON.stringify({
 
-                email: this.props.route.params.email,
+                patientID: this.props.route.params.ID,
 
-                Smoker: Smoker,
+                cough: cough,
 
-                Pregnant: Pregnant,
+                highTemperature: highTemperature,
 
-                MedicalConditions: MedicalConditions,
+                changeSmellTaste: changeSmellTaste,
 
-                Hospitalised: Hospitalised,
-
-                CovidSymptoms: CovidSymptoms
+                daysSubText: daysSubText
 
               })
 
@@ -88,7 +86,7 @@ class UpdateCovidSymptoms extends React.Component {
                  {
 
                      //Then Alert User and send to Home page.
-                     { if (this.state.CovidSymptoms === '1') { this.props.navigation.navigate('CovidSymptoms') } else { this.props.navigation.navigate('Home') } };
+                     this.props.navigation.navigate('Home') ;
 
                  }
                  else{
@@ -163,11 +161,10 @@ class UpdateCovidSymptoms extends React.Component {
                     placeholder="Here" 
                     placeholderTextColor="black"
                     keyboardType="number-pad"
-                    maxLength= '2'
-                    onChangeText={(text)=> this.onChanged(text)}/>
+                    //maxLength= '2'
+                    onChangeText={text=> this.onChanged(text)}/>
                 </View>
-                <TouchableOpacity onPress={ this.UpdateSymptomsFunction }
-                    onPress={() => this.props.navigation.navigate('UpdateCovidSymptoms')}
+                <TouchableOpacity onPress={ this.UpdateCovidFunction }
                     style={styles.button}>
                     <Text style={styles.buttonText}>Submit</Text>
                 </TouchableOpacity>

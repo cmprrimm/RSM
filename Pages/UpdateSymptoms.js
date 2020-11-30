@@ -8,8 +8,11 @@ class UpdateSymptoms extends React.Component {
         selected: null,
         smoker: this.props.route.params.smoker,
         pregnant: this.props.route.params.pregnant,
-        medicalConditions: this.props.route.params.medicalConditions,
         hospitalised: this.props.route.params.hospitalised,
+        cardioProblem: this.props.route.params.cardioProblem,
+        disability: this.props.route.params.disability,
+        cancerTreatment: this.props.route.params.cancerTreatment,
+        highRiskInfection: this.props.route.params.highRiskInfection,
         covidSymptoms: this.props.route.params.covidSymptoms
     };
 
@@ -74,8 +77,11 @@ class UpdateSymptoms extends React.Component {
 
          const { smoker }  = this.state ;
          const { pregnant }  = this.state ;
-         const { medicalConditions }  = this.state ;
          const { hospitalised }  = this.state ;
+         const { cardioProblem } = this.state ;
+         const { disability } = this.state ;
+         const { cancerTreatment } = this.state ;
+         const { highRiskInfection } = this.state ;
          const { covidSymptoms }  = this.state ;
 
          fetch('https://rsmcovidapp.000webhostapp.com/UpdateSymptoms.php', {
@@ -92,9 +98,15 @@ class UpdateSymptoms extends React.Component {
 
                 pregnant: pregnant,
 
-                medicalConditions: medicalConditions,
-
                 hospitalised: hospitalised,
+
+                cardioProblem: cardioProblem,
+
+                disability: disability,
+
+                cancerTreatment: cancerTreatment,
+
+                highRiskInfection: highRiskInfection,
 
                 covidSymptoms: covidSymptoms
 
@@ -111,16 +123,22 @@ class UpdateSymptoms extends React.Component {
                         this.props.navigation.navigate('UpdateCovidSymptoms', { ID: this.props.route.params.ID,
                                                                                 smoker: smoker,
                                                                                 pregnant: pregnant,
-                                                                                medicalConditions: medicalConditions,
                                                                                 hospitalised: hospitalised,
+                                                                                cardioProblem: cardioProblem,
+                                                                                disability: disability,
+                                                                                cancerTreatment: cancerTreatment,
+                                                                                highRiskInfection: highRiskInfection,
                                                                                 covidSymptoms: covidSymptoms});
                      }
                      else {
                         Alert.alert("This information has now been submitted");
                         this.props.navigation.navigate('Home', { smoker: smoker,
                                                                  pregnant: pregnant,
-                                                                 medicalConditions: medicalConditions,
                                                                  hospitalised: hospitalised,
+                                                                 cardioProblem: cardioProblem,
+                                                                 disability: disability,
+                                                                 cancerTreatment: cancerTreatment,
+                                                                 highRiskInfection: highRiskInfection,
                                                                  covidSymptoms: covidSymptoms});
                      }
 

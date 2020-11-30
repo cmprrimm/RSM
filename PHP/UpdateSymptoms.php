@@ -12,7 +12,7 @@ include 'DBConfig.php';
  // decoding the received JSON and store into $obj variable.
  $obj = json_decode($json,true);
 
-// Populate email from JSON $obj array and store into $email.
+// Populate ID from JSON $obj array and store into $ID.
 $ID = $obj['ID'];
 
 // Populate smoker from JSON $obj array and store into $smoker.
@@ -21,16 +21,25 @@ $smoker = $obj['smoker'];
 // Populate pregnant from JSON $obj array and store into $pregnant.
 $pregnant = $obj['pregnant'];
 
-// Populate medicalConditions from JSON $obj array and store into $medicalConditions.
-$medicalConditions = $obj['medicalConditions'];
-
 // Populate hospitalised from JSON $obj array and store into $hospitalised.
 $hospitalised = $obj['hospitalised'];
+
+// Populate cardioProblem from JSON $obj array and store into $cardioProblem.
+$cardioProblem = $obj['cardioProblem'];
+
+// Populate disability from JSON $obj array and store into $disability.
+$disability = $obj['disability'];
+
+// Populate cancerTreatment from JSON $obj array and store into $cancerTreatment.
+$cancerTreatment = $obj['cancerTreatment'];
+
+// Populate highRiskInfection from JSON $obj array and store into $highRiskInfection.
+$highRiskInfection = $obj['highRiskInfection'];
 
 // Populate covidSymptoms from JSON $obj array and store into $covidSymptoms.
 $covidSymptoms = $obj['covidSymptoms'];
 
-$Sql_Query = "Update Patient Set Smoker = '$smoker', Pregnant = '$pregnant', MedicalConditions = '$medicalConditions', Hospitalised = '$hospitalised', CovidSymptoms = '$covidSymptoms' Where ID = '$ID'";
+$Sql_Query = "Update Patient Set Smoker = '$smoker', Pregnant = '$pregnant', Hospitalised = '$hospitalised', CardioProblem = '$cardioProblem', Disability = '$disability', CancerTreatment = '$cancerTreatment', HighRiskInfection = '$highRiskInfection', CovidSymptoms = '$covidSymptoms' Where ID = '$ID'";
 
  if(mysqli_query($con,$Sql_Query)){
 
