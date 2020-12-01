@@ -39,23 +39,16 @@ $CheckSQL = "SELECT * FROM Patient WHERE Email = '$email'";
 // Executing SQL Query.
 $check = mysqli_fetch_array(mysqli_query($con,$CheckSQL));
 
-
 if(isset($check)){
 
- $EmailExistMSG = 'Email Already Exist, Please Try Again' ;
+$checkSQL2 = "SELECT * FROM Patient WHERE Email = '$email' AND Name = '0'";
 
- // Converting the message into JSON format.
-$EmailExistJson = json_encode($EmailExistMSG);
+$check2 = mysqli_fetch_array(mysqli_query($con,$CheckSQL2));
 
-// Echo the message.
- echo $EmailExistJson ;
-
- }
- else{
+if(isset($check2)){
 
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "Insert into Patient (Name,Password,Email,DOB,Address,Gender,ContactNumber) values ('$fullName','$password','$email','$DOB','$address','$gender','$contactNo')";
-
+$Sql_Query = "Update Patient Set Name = '$fullName', Password = '$password', DOB = '$DOB', Address = '$address', Gender = '$gender', ContactNumber = '$contactNo' Where Email = '$email'";
 
  if(mysqli_query($con,$Sql_Query)){
 
@@ -80,6 +73,28 @@ $InvalidJSon = json_encode($InvalidMSG);
 // Echo the message.
  echo $InvalidJSon ;
  }
+
+ }
+ else{
+ $UserSignedUp = 'Have already been through first time sign up!' ;
+
+ // Converting the message into JSON format.
+$UserSignedUpJson = json_encode($UserSignedUp);
+
+// Echo the message.
+ echo $UserSignedUpJson ;
+
+ }
+ }
+ else{
+ $EmailExistMSG = 'Please contact Doctor to be registered onto the system' ;
+
+ // Converting the message into JSON format.
+$EmailExistJson = json_encode($EmailExistMSG);
+
+// Echo the message.
+ echo $EmailExistJson ;
+
  }
  mysqli_close($con);
 ?>

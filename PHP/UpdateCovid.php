@@ -27,6 +27,9 @@ $changeSmellTaste = $obj['changeSmellTaste'];
 // Populate daysSubText from JSON $obj array and store into $daysSubText.
 $daysSubText = $obj['daysSubText'];
 
+// Populate mentalIssues from JSON $obj array and store into $mentalIssues.
+$mentalIssues = $obj['mentalIssues'];
+
 //Checking Patient already has symptoms or not using SQL query.
 $CheckSQL = "SELECT * FROM COVID WHERE PatientID = '$patientID'";
 
@@ -36,7 +39,7 @@ $check = mysqli_fetch_array(mysqli_query($con,$CheckSQL));
 if(isset($check)){
 
 //update COVID symptoms
-$Sql_Query = "Update COVID Set Cough = '$cough', Temperature = '$highTemperature', LossOfSAndT = '$changeSmellTaste', DaysWithSymp = '$daysSubText' Where PatientID = '$patientID'";
+$Sql_Query = "Update COVID Set Cough = '$cough', Temperature = '$highTemperature', LossOfSAndT = '$changeSmellTaste', DaysWithSymp = '$daysSubText', MentalIssues = '$mentalIssues' Where PatientID = '$patientID'";
 
  if(mysqli_query($con,$Sql_Query)){
 
@@ -63,7 +66,7 @@ $UnsuccessfulJson = json_encode($UnsuccessfulMSG);
  else{
 
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "Insert into COVID (PatientID,Cough,Temperature,LossOfSAndT,DaysWithSymp) values ('$patientID','$cough','$highTemperature','$changeSmellTaste','$daysSubText')";
+$Sql_Query = "Insert into COVID (PatientID,Cough,Temperature,LossOfSAndT,DaysWithSymp,MentalIssues) values ('$patientID','$cough','$highTemperature','$changeSmellTaste','$daysSubText','$mentalIssues')";
 
  if(mysqli_query($con,$Sql_Query)){
 

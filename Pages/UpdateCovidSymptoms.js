@@ -11,7 +11,8 @@ class UpdateCovidSymptoms extends React.Component {
         cough: "0",
         highTemperature: "0",
         changeSmellTaste: "0",
-        daysSubText: "0"
+        daysSubText: "0",
+        mentalIssues: ""
     };
 
     cough(flag, button) {
@@ -57,6 +58,7 @@ class UpdateCovidSymptoms extends React.Component {
          const { highTemperature }  = this.state ;
          const { changeSmellTaste }  = this.state ;
          const { daysSubText }  = this.state ;
+         const { mentalIssues } = this.state;
 
          fetch('https://rsmcovidapp.000webhostapp.com/UpdateCovid.php', {
               method: 'POST',
@@ -74,7 +76,9 @@ class UpdateCovidSymptoms extends React.Component {
 
                 changeSmellTaste: changeSmellTaste,
 
-                daysSubText: daysSubText
+                daysSubText: daysSubText,
+
+                mentalIssues: mentalIssues
 
               })
 
@@ -163,6 +167,17 @@ class UpdateCovidSymptoms extends React.Component {
                     keyboardType="number-pad"
                     //maxLength= '2'
                     onChangeText={text=> this.onChanged(text)}/>
+                </View>
+                <View style={styles.textInputView} >
+                <Text style={styles.text}>
+                        Have you experienced any mental issues such as anxiety or depression along with these symptoms? If so please detail them below.
+                </Text>
+                <Text></Text>
+                <TextInput
+                    style={styles.daysSubText}
+                    placeholder="Here"
+                    placeholderTextColor="black"
+                    onChangeText={text => this.setState({mentalIssues:text})}/>
                 </View>
                 <TouchableOpacity onPress={ this.UpdateCovidFunction }
                     style={styles.button}>
