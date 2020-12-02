@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ScrollView, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import DatePicker from 'react-native-datepicker'
 import { Alert } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 class SignUp extends React.Component {
 
@@ -90,12 +91,15 @@ class SignUp extends React.Component {
 
     render() {
         return (
-            <KeyboardAvoidingView
-                behavior={Platform.OS == "ios" ? "padding" : "height"}
-            >
-                <ScrollView style={styles.scroll}>
-                    <View style={styles.container}>
+            
+
+                <SafeAreaView style={styles.container}>
+                    
                         <Text style={styles.logo}>Register!</Text>
+                        <ScrollView style={{width: "100%"}}>
+                        <KeyboardAwareScrollView>
+                        <View style={styles.container}>
+                        
                         <View style={styles.inputView} >
                             <TextInput
                                 style={styles.inputText}
@@ -125,6 +129,7 @@ class SignUp extends React.Component {
                                 style={styles.inputText}
                                 placeholder="Full Name"
                                 placeholderTextColor="#003f5c"
+                                autoCorrect="false"
                                 autoCompleteType="name"
                                 textContentType="givenName"
                                 textContentType="familyName"
@@ -137,6 +142,7 @@ class SignUp extends React.Component {
                                 ref={(input) => { this.address = input; }}
                                 style={styles.inputText}
                                 placeholder="Address"
+                                autoCorrect="false"
                                 textContentType="fullStreetAddress"
                                 placeholderTextColor="#003f5c"
                                 autoCompleteType="street-address"
@@ -149,29 +155,31 @@ class SignUp extends React.Component {
                                 ref={(input) => { this.gender = input; }}
                                 style={styles.inputText}
                                 placeholder="Gender"
+                                autoCorrect="false"
                                 placeholderTextColor="#003f5c"
                                 returnKeyType="next"
                                 onSubmitEditing={() => { this.DOB.focus(); }}
                                 onChangeText={text => this.setState({ gender: text })} />
                         </View>
                         <View style={styles.inputView}>
-                            <DatePicker date={this.state.DOB} showIcon={true} placeholder="Date of Birth" mode="date" format="DD-MM-YYYY"
+                            <DatePicker date={this.state.DOB} showIcon={false}  placeholder="Date of Birth" mode="date" format="DD-MM-YYYY"
                                 customStyles={{
                                     dateInput: {
                                         borderWidth: 0,
                                         height: 50,
                                         width: 170,
-                                        right: 30,
+                                        right: 40,
                                     },
                                     dateText: {
                                         height: 50,
                                         color: "black",
-                                        marginTop: 20
+                                        marginTop: 35,
+                                        marginLeft: 20
                                     },
                                     placeholderText: {
                                         height: 50,
-                                        color: "black",
-                                        marginTop: 25,
+                                        color: "#003f5c",
+                                        marginTop: 35,
                                         marginLeft: 20
                                     }
                                 }
@@ -196,6 +204,8 @@ class SignUp extends React.Component {
                                 style={styles.inputText}
                                 placeholder="Contact Number"
                                 placeholderTextColor="#003f5c"
+                                autoCorrect="false"
+                                keyboardType="number-pad"
                                 textContentType="telephoneNumber"
                                 autoCompleteType="tel"
                                 returnKeyType="go"
@@ -212,9 +222,11 @@ class SignUp extends React.Component {
                             style={styles.registerBtn}>
                             <Text style={styles.signUpText}>Back</Text>
                         </TouchableOpacity>
-                    </View >
+                    </View>
+                    </KeyboardAwareScrollView>
                 </ScrollView>
-            </KeyboardAvoidingView>
+                
+                </SafeAreaView>
         );
     }
 }
@@ -225,26 +237,27 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#00A9CE',
         alignItems: 'center',
-        justifyContent: 'center',
+
     },
     logo: {
         fontWeight: "bold",
         fontSize: 50,
         color: "#fb5b5a",
-        marginBottom: 40,
-        marginTop: 50
+        marginBottom: 20,
+        marginTop: 20
     },
     scroll: {
+        flex: 1,
         backgroundColor: '#00A9CE',
     },
     inputView: {
         width: "80%",
         backgroundColor: "white",
         borderRadius: 25,
-        height: 50,
+        height: 65,
         marginBottom: 20,
         justifyContent: "center",
-        padding: 20
+        padding: 25
     },
     inputText: {
         height: 50,
