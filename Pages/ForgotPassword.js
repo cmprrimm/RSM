@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity } from 'rea
 import { Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import DatePicker from 'react-native-datepicker';
 
 class CheckUser extends React.Component {
     state = {
@@ -68,14 +69,31 @@ class CheckUser extends React.Component {
                         onChangeText={text => this.setState({ email: text })} />
                 </View>
                 <View style={styles.inputView} >
-                    <TextInput
-                        ref={(input) => { this.DOB = input; }}
-                        style={styles.inputText}
-                        placeholder="Date of Birth"
-                        placeholderTextColor="#003f5c"
-                        returnKeyType="go"
-                        onSubmitEditing={ this.CheckUserFunction }
-                        onChangeText={text => this.setState({ DOB: text })} />
+                    <DatePicker date={this.state.DOB} showIcon={false} placeholder="Date of Birth" mode="date" format="YYYY-MM-DD"
+                        confirmBtnText="Confirm"
+                        cancelBtnText="Cancel"
+                        customStyles={{
+                            dateInput: {
+                                borderWidth: 0,
+                                height: 50,
+                                width: 170,
+                                right: 40,
+                            },
+                            dateText: {
+                                height: 50,
+                                color: "black",
+                                marginTop: 35,
+                                marginLeft: 20
+                            },
+                            placeholderText: {
+                                height: 50,
+                                color: "#003f5c",
+                                marginTop: 35,
+                                marginLeft: 20
+                            }
+                        }
+                        }
+                        onDateChange={DOB =>  this.setState({ DOB: DOB }) }></DatePicker>
                 </View>
                 <TouchableOpacity  onPress={ this.CheckUserFunction }
                     style={styles.registerBtn}>

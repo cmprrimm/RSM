@@ -26,9 +26,6 @@ class Home extends React.Component {
       }
 
 render(){
-
-    const {goBack} = this.props.navigation;
-
   return (
       <View style={styles.container}>
         <Text style={styles.logo}>Welcome {this.props.route.params.name}</Text>
@@ -44,7 +41,7 @@ render(){
           style={styles.Button}>
           <Text style={styles.buttonText}>Read Latest Advice</Text>
         </TouchableOpacity>
-        <TouchableOpacity  onPress={ () => goBack(null) }
+        <TouchableOpacity  onPress={ () => this.props.navigation.navigate('Login')}
           style={styles.Button}>
           <Text style={styles.buttonText}>Log Out</Text>
         </TouchableOpacity>

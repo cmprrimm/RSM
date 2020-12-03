@@ -41,6 +41,7 @@ class SignUp extends React.Component {
         const { address } = this.state;
         const { gender } = this.state;
         const { DOB } = this.state;
+        useNativeDriver: true;
         const { contactNo } = this.state;
 
         fetch('https://rsmcovidapp.000webhostapp.com//User_Registration.php', {
@@ -76,7 +77,6 @@ class SignUp extends React.Component {
                     //Then Alert User and Send back to Login Page.
                     Alert.alert(responseJson)
                     this.props.navigation.navigate('Login');
-                    //this.props.navigation.navigate('Second', { Email: UserEmail });
 
                 }
                 else {
@@ -96,7 +96,7 @@ class SignUp extends React.Component {
 
                 <SafeAreaView style={styles.container}>
                     
-                        <Text style={styles.logo}>Register!</Text>
+                        <Text style={styles.logo}>First Time Login</Text>
                         <ScrollView style={{width: "100%"}}>
                         <KeyboardAwareScrollView>
                         <View style={styles.container}>
@@ -175,7 +175,7 @@ class SignUp extends React.Component {
                         />
                         <Text></Text>
                         <View style={styles.inputView}>
-                            <DatePicker date={this.state.DOB} showIcon={false} placeholder="Date of Birth" mode="date" format="DD-MM-YYYY"
+                            <DatePicker date={this.state.DOB} showIcon={false} placeholder="Date of Birth" mode="date" format="YYYY-MM-DD"
                                 confirmBtnText="Confirm"
                                 cancelBtnText="Cancel"
                                 customStyles={{
@@ -219,7 +219,7 @@ class SignUp extends React.Component {
                         </View>
                         <TouchableOpacity onPress={this.UserRegistrationFunction}
                             style={styles.registerBtn}>
-                            <Text style={styles.signUpText}>Register</Text>
+                            <Text style={styles.signUpText}>Log in</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}
                             style={styles.registerBtn}>

@@ -41,11 +41,11 @@ $check = mysqli_fetch_array(mysqli_query($con,$CheckSQL));
 
 if(isset($check)){
 
-$checkSQL2 = "SELECT * FROM Patient WHERE Email = '$email' AND Name = '0'";
+$userCheck = "SELECT * FROM Patient WHERE Email = '$email' AND Name = '0'";
 
-$check2 = mysqli_fetch_array(mysqli_query($con,$CheckSQL2));
+$user = mysqli_fetch_array(mysqli_query($con,$userCheck));
 
-if(isset($check2)){
+if(isset($user)){
 
  // Creating SQL query and insert the record into MySQL database table.
 $Sql_Query = "Update Patient Set Name = '$fullName', Password = '$password', DOB = '$DOB', Address = '$address', Gender = '$gender', ContactNumber = '$contactNo' Where Email = '$email'";
