@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ScrollView
 import DatePicker from 'react-native-datepicker'
 import { Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 class SignUp extends React.Component {
 
@@ -29,7 +30,7 @@ class SignUp extends React.Component {
         address: "",
         gender: "",
         DOB: "",
-        contactNo: "",
+        contactNo: ""
     }
 
     UserRegistrationFunction = () => {
@@ -129,7 +130,7 @@ class SignUp extends React.Component {
                                 style={styles.inputText}
                                 placeholder="Full Name"
                                 placeholderTextColor="#003f5c"
-                                autoCorrect="false"
+                                //autoCorrect="false"
                                 autoCompleteType="name"
                                 textContentType="givenName"
                                 textContentType="familyName"
@@ -142,7 +143,7 @@ class SignUp extends React.Component {
                                 ref={(input) => { this.address = input; }}
                                 style={styles.inputText}
                                 placeholder="Address"
-                                autoCorrect="false"
+                                //autoCorrect="false"
                                 textContentType="fullStreetAddress"
                                 placeholderTextColor="#003f5c"
                                 autoCompleteType="street-address"
@@ -150,44 +151,30 @@ class SignUp extends React.Component {
                                 onSubmitEditing={() => { this.gender.focus(); }}
                                 onChangeText={text => this.setState({ address: text })} />
                         </View>
+                        <DropDownPicker
+                            items={[
+                                {label: 'Male', value: 'Male', hidden: true},
+                                {label: 'Female', value: 'Female'},
+                                {label: 'Other', value: 'Other'},
+                            ]}
+                            defaultValue={this.state.gender}
+                            placeholder="Please select your gender from the drop-down"
+                            containerStyle={{width: 325, height: 50}}
+                            style={{backgroundColor: '#fafafa'}}
+                            labelStyle={{
+                                fontSize: 14,
+                                textAlign: 'left'
+                            }}
+                            itemStyle={{
+                                justifyContent: 'flex-start',
+                            }}
+                            dropDownStyle={{backgroundColor: '#fafafa'}}
+                            onChangeItem={item => this.setState({
+                                gender: item.value
+                            })}
+                        />
+                        <Text></Text>
                         <View style={styles.inputView} >
-                            <TextInput
-                                ref={(input) => { this.gender = input; }}
-                                style={styles.inputText}
-                                placeholder="Gender"
-                                autoCorrect="false"
-                                placeholderTextColor="#003f5c"
-                                returnKeyType="next"
-                                onSubmitEditing={() => { this.DOB.focus(); }}
-                                onChangeText={text => this.setState({ gender: text })} />
-                        </View>
-                        <View style={styles.inputView}>
-                            <DatePicker date={this.state.DOB} showIcon={false}  placeholder="Date of Birth" mode="date" format="DD-MM-YYYY"
-                                customStyles={{
-                                    dateInput: {
-                                        borderWidth: 0,
-                                        height: 50,
-                                        width: 170,
-                                        right: 40,
-                                    },
-                                    dateText: {
-                                        height: 50,
-                                        color: "black",
-                                        marginTop: 35,
-                                        marginLeft: 20
-                                    },
-                                    placeholderText: {
-                                        height: 50,
-                                        color: "#003f5c",
-                                        marginTop: 35,
-                                        marginLeft: 20
-                                    }
-                                }
-                                }
-                                onDateChange={DOB =>  this.setState({ DOB: DOB }) }></DatePicker>
-                        </View>
-
-                        {/* <View style={styles.inputView} >
                             <TextInput
                                 ref={(input) => { this.DOB = input; }}
                                 style={styles.inputText}
@@ -196,20 +183,19 @@ class SignUp extends React.Component {
                                 returnKeyType="next"
                                 onSubmitEditing={() => { this.number.focus(); }}
                                 onChangeText={text => this.setState({ DOB: text })} />
-                        </View> */}
-                        
+                        </View>
                         <View style={styles.inputView} >
                             <TextInput
                                 ref={(input) => { this.number = input; }}
                                 style={styles.inputText}
                                 placeholder="Contact Number"
                                 placeholderTextColor="#003f5c"
-                                autoCorrect="false"
+                                //autoCorrect="false"
                                 keyboardType="number-pad"
                                 textContentType="telephoneNumber"
                                 autoCompleteType="tel"
                                 returnKeyType="go"
-                                onSubmitEditing={() => this.props.navigation.navigate('Login')}
+                                onSubmitEditing={ this.UserRegistrationFunction }
                                 onChangeText={(text) => this.setState({ contactNo: text })}
                                 onChangeText={(text) => this.onChanged(text)}
                             />

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, TouchableHighlight
 import { Alert } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 class UpdateCovidSymptoms extends React.Component {
 
@@ -12,6 +13,7 @@ class UpdateCovidSymptoms extends React.Component {
         highTemperature: "0",
         changeSmellTaste: "0",
         daysSubText: "0",
+        tested: "",
         mentalIssues: ""
     };
 
@@ -58,6 +60,7 @@ class UpdateCovidSymptoms extends React.Component {
          const { highTemperature }  = this.state ;
          const { changeSmellTaste }  = this.state ;
          const { daysSubText }  = this.state ;
+         const {tested } = this.state;
          const { mentalIssues } = this.state;
 
          fetch('https://rsmcovidapp.000webhostapp.com/UpdateCovid.php', {
@@ -78,6 +81,8 @@ class UpdateCovidSymptoms extends React.Component {
 
                 daysSubText: daysSubText,
 
+                tested: tested,
+
                 mentalIssues: mentalIssues
 
               })
@@ -90,7 +95,7 @@ class UpdateCovidSymptoms extends React.Component {
                  {
 
                      //Then Alert User and send to Home page.
-                     this.props.navigation.navigate('Home') ;
+                     this.props.navigation.navigate('HaveSymptoms') ;
 
                  }
                  else{
@@ -109,7 +114,7 @@ class UpdateCovidSymptoms extends React.Component {
             <SafeAreaView style={styles.container}>
                 <Text style={styles.logo}>Covid Symptoms</Text>
                 <Text style={styles.subLogo}>Select the choices that apply to you</Text>
-                <ScrollView style={styles.scroll}>
+                <ScrollView style={{width: "100%"}}>
                 <View style={styles.inputView} >
                     <TouchableHighlight
                         onPress={() => this.cough('any flag', '1')}
@@ -168,13 +173,37 @@ class UpdateCovidSymptoms extends React.Component {
                     //maxLength= '2'
                     onChangeText={text=> this.onChanged(text)}/>
                 </View>
+                <DropDownPicker
+                    items={[
+                        {label: 'Not been tested', value: 'Not Tested', hidden: true},
+                        {label: 'Positive', value: 'Positive'},
+                        {label: 'Negative', value: 'Negative'},
+                    ]}
+                    defaultValue={this.state.tested}
+                    placeholder="If you have been tested, what was the result? Please select from the drop-down"
+                    containerStyle={{width: "80%", height: 60, marginLeft: 40}}
+                    style={{backgroundColor: '#fafafa'}}
+                    labelStyle={{
+                        fontSize: 14,
+                        fontWeight: 'bold',
+                        textAlign: 'center'
+                    }}
+                    itemStyle={{
+                        justifyContent: 'flex-start',
+                    }}
+                    dropDownStyle={{backgroundColor: '#fafafa'}}
+                    onChangeItem={item => this.setState({
+                        tested: item.value
+                    })}
+                />
+                <Text></Text>
                 <View style={styles.textInputView} >
                 <Text style={styles.text}>
-                        Have you experienced any mental issues such as anxiety or depression along with these symptoms? If so please detail them below.
+                        Please detail any mental issues you have experienced due to COVID below.
                 </Text>
                 <Text></Text>
                 <TextInput
-                    style={styles.daysSubText}
+                    style={styles.issuesText}
                     placeholder="Here"
                     placeholderTextColor="black"
                     onChangeText={text => this.setState({mentalIssues:text})}/>
@@ -242,54 +271,65 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         textAlign: 'center',
     },
+    issuesText: {
+        color: "black",
+        fontSize: 15,
+        flexWrap: 'wrap',
+        textAlign: 'center',
+    },
     inputView: {
-        width: "100%",
+        width: "80%",
         backgroundColor: "white",
         borderRadius: 15,
         height: 140,
         marginBottom: 10,
+        marginLeft: 40,
         justifyContent: "center",
         alignItems: "center",
         textAlign: 'center',
     },
     inputView1: {
-        width: "100%",
+        width: "80%",
         backgroundColor: "white",
         borderRadius: 15,
         height: 135,
         marginBottom: 10,
+        marginLeft: 40,
         justifyContent: "center",
         alignItems: "center",
         textAlign: 'center',
     },
     textInputView: {
-        width: "100%",
+        width: "80%",
         backgroundColor: "white",
         borderRadius: 15,
         height: 100,
         marginBottom: 10,
+        marginLeft: 40,
         justifyContent: "center",
         alignItems: "center",
         textAlign: 'center',
     },
     button: {
-        width: "100%",
+        width: "80%",
         backgroundColor: "#fb5b5a",
         borderRadius: 25,
         height: 50,
         alignItems: "center",
         justifyContent: "center",
         marginTop: 10,
-        marginBottom: 10
+        marginBottom: 10,
+        marginLeft: 40
     },
     otherButton: {
-        width: "100%",
+        width: "80%",
         borderRadius: 25,
         height: 50,
         alignItems: "center",
         justifyContent: "center",
         marginTop: 20,
-        marginBottom: 10
+        marginBottom: 10,
+        marginLeft: 40
     },
     buttonText: {
         color: "white", 
