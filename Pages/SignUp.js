@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ScrollView
 import { Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DropDownPicker from 'react-native-dropdown-picker';
+import DatePicker from 'react-native-datepicker';
 
 class SignUp extends React.Component {
 
@@ -173,15 +174,32 @@ class SignUp extends React.Component {
                             })}
                         />
                         <Text></Text>
-                        <View style={styles.inputView} >
-                            <TextInput
-                                ref={(input) => { this.DOB = input; }}
-                                style={styles.inputText}
-                                placeholder="Date of Birth"
-                                placeholderTextColor="#003f5c"
-                                returnKeyType="next"
-                                onSubmitEditing={() => { this.number.focus(); }}
-                                onChangeText={text => this.setState({ DOB: text })} />
+                        <View style={styles.inputView}>
+                            <DatePicker date={this.state.DOB} showIcon={false} placeholder="Date of Birth" mode="date" format="DD-MM-YYYY"
+                                confirmBtnText="Confirm"
+                                cancelBtnText="Cancel"
+                                customStyles={{
+                                    dateInput: {
+                                        borderWidth: 0,
+                                        height: 50,
+                                        width: 170,
+                                        right: 40,
+                                    },
+                                    dateText: {
+                                        height: 50,
+                                        color: "black",
+                                        marginTop: 35,
+                                        marginLeft: 20
+                                    },
+                                    placeholderText: {
+                                        height: 50,
+                                        color: "#003f5c",
+                                        marginTop: 35,
+                                        marginLeft: 20
+                                    }
+                                }
+                                }
+                                onDateChange={DOB =>  this.setState({ DOB: DOB }) }></DatePicker>
                         </View>
                         <View style={styles.inputView} >
                             <TextInput

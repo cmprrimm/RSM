@@ -10,9 +10,9 @@ class NoSymptoms extends React.Component {
             <Text style={styles.subLogo}>If you haven't been tested already please isolate until you are tested. If you have a positive test result you must isolate for 14 days.</Text>
             <Text></Text>
             <Text style={styles.subLogo}>For further advice, please contact:</Text>
-            <TouchableOpacity  onPress={ ()=> Linking.openURL('https://111.nhs.uk')}
+            <TouchableOpacity  onPress={ ()=> Linking.openURL('https://www.gov.uk/get-coronavirus-test')}
                 style={styles.otherButton}>
-                <Text style={styles.otherButtonText}>NHS 111 online</Text>
+                <Text style={styles.otherButtonText}>Get a test here!</Text>
             </TouchableOpacity>
             <TouchableOpacity  onPress={() =>
                 this.props.navigation.navigate('Home')}
