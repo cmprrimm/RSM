@@ -14,7 +14,7 @@ class Home extends React.Component {
       }
 
     UpdateSymptomsFunction = () =>{
-        this.props.navigation.navigate('UpdateSymptoms', { ID: this.props.route.params.ID,
+        this.props.navigation.navigate('HealthInformation', { ID: this.props.route.params.ID,
                                                            smoker: this.props.route.params.smoker,
                                                            pregnant: this.props.route.params.pregnant,
                                                            hospitalised: this.props.route.params.hospitalised,

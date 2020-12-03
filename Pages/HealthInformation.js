@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button, TouchableHighlight, ScrollView} from 'react-native';
 import { Alert } from 'react-native';
 
-class UpdateSymptoms extends React.Component {
+class HealthInformation extends React.Component {
 
     state = {
         selected: null,
@@ -161,7 +161,7 @@ class UpdateSymptoms extends React.Component {
             <View style={styles.container}>
                 <Text style={styles.logo}>Health Information</Text>
                 <Text style={styles.subLogo}>Select the choices that apply to you </Text>
-                <ScrollView style={styles.scroll}>
+                <ScrollView style={{width: "100%"}}>
                 <View style={styles.container}>
                 <View style={styles.inputView} >
                     <TouchableHighlight
@@ -377,4 +377,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default UpdateSymptoms;
+export default HealthInformation;

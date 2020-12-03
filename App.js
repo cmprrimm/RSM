@@ -7,7 +7,7 @@ import Login from './Pages/Login';
 import ForgotPassword from './Pages/ForgotPassword';
 import Home from './Pages/Home';
 import UserProfile from './Pages/UserProfile';
-import UpdateSymptoms from './Pages/UpdateSymptoms';
+import HealthInformation from './Pages/HealthInformation';
 import ChangePassword from './Pages/ChangePassword';
 import UpdateInfo from './Pages/UpdateInfo';
 import UpdateCovidSymptoms from './Pages/UpdateCovidSymptoms';
@@ -45,8 +45,8 @@ export default class App extends React.Component {
             component={UserProfile}
           />
           <Stack.Screen
-            name="UpdateSymptoms"
-            component={UpdateSymptoms}
+            name="HealthInformation"
+            component={HealthInformation}
           />
           <Stack.Screen
             name="ChangePassword"

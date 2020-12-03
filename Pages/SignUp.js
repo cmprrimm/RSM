@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, ScrollView, SafeAreaView, KeyboardAvoidingView } from 'react-native';
-import DatePicker from 'react-native-datepicker'
 import { Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DropDownPicker from 'react-native-dropdown-picker';

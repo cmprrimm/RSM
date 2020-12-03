@@ -181,7 +181,7 @@ class UpdateCovidSymptoms extends React.Component {
                     ]}
                     defaultValue={this.state.tested}
                     placeholder="If you have been tested, what was the result? Please select from the drop-down"
-                    containerStyle={{width: "80%", height: 60, marginLeft: 40}}
+                    containerStyle={{width: "80%", height: 80, marginLeft: 40}}
                     style={{backgroundColor: '#fafafa'}}
                     labelStyle={{
                         fontSize: 14,
@@ -197,7 +197,7 @@ class UpdateCovidSymptoms extends React.Component {
                     })}
                 />
                 <Text></Text>
-                <View style={styles.textInputView} >
+                <View style={styles.textInputViewMental} >
                 <Text style={styles.text}>
                         Please detail any mental issues you have experienced due to COVID below.
                 </Text>
@@ -206,6 +206,9 @@ class UpdateCovidSymptoms extends React.Component {
                     style={styles.issuesText}
                     placeholder="Here"
                     placeholderTextColor="black"
+                    multiline={true}
+                    alignContent="center"
+                    justifyContent="center"
                     onChangeText={text => this.setState({mentalIssues:text})}/>
                 </View>
                 <TouchableOpacity onPress={ this.UpdateCovidFunction }
@@ -293,6 +296,17 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 15,
         height: 135,
+        marginBottom: 10,
+        marginLeft: 40,
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: 'center',
+    },
+    textInputViewMental: {
+        width: "80%",
+        backgroundColor: "white",
+        borderRadius: 15,
+        height: 150,
         marginBottom: 10,
         marginLeft: 40,
         justifyContent: "center",
