@@ -16,28 +16,13 @@ include 'DBConfig.php';
 $ID = $obj['ID'];
 
 // Populate email from JSON $obj array and store into $email.
-if($obj['email'] === ""){
-    $email = $obj['origEmail'];
-}
-else{
-    $email = $obj['email'];
-}
+$email = $obj['email'];
 
 // Populate address from JSON $obj array and store into $address.
-if($obj['address'] === ""){
-    $address = $obj['origAddress'];
-}
-else{
-    $address = $obj['address'];
-}
+$address = $obj['address'];
 
 // Populate contactNo from JSON $obj array and store into $contactNo.
-if($obj['contactNo'] === ""){
-    $contactNo = $obj['origContactNo'];
-}
-else{
-    $contactNo = $obj['contactNo'];
-}
+$contactNo = $obj['contactNo'];
 
 $Sql_Query = "Update Patient Set Email = '$email', Address = '$address', ContactNumber = '$contactNo' Where ID = '$ID'";
 

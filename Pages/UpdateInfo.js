@@ -26,12 +26,6 @@ class UpdateInfo extends React.Component {
 
              ID: this.props.route.params.ID,
 
-             origEmail: this.props.route.params.email,
-
-             origAddress: this.props.route.params.address,
-
-             origContactNo: this.props.route.params.contactNo,
-
              email: email,
 
              address: address,

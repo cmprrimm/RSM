@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TextInput, TouchableOpacity, StatusBar } from 'react-native';
 
-class NoSymptoms extends React.Component {
+class HaveSymptoms extends React.Component {
       render(){
         return (
           <View style={styles.container}>
