@@ -30,6 +30,9 @@ $daysSubText = $obj['daysSubText'];
 // Populate tested from JSON $obj array and store into $tested.
 $tested = $obj['tested'];
 
+// Populate tested from JSON $obj array and store into $hospitalised.
+$hospitalised = $obj['hospitalised'];
+
 // Populate mentalIssues from JSON $obj array and store into $mentalIssues.
 $mentalIssues = $obj['mentalIssues'];
 
@@ -42,7 +45,7 @@ $check = mysqli_fetch_array(mysqli_query($con,$CheckSQL));
 if(isset($check)){
 
 //update COVID symptoms
-$Sql_Query = "Update COVID Set Cough = '$cough', Temperature = '$highTemperature', LossOfSAndT = '$changeSmellTaste', DaysWithSymp = '$daysSubText', Tested = '$tested', MentalIssues = '$mentalIssues' Where PatientID = '$patientID'";
+$Sql_Query = "Update COVID Set Cough = '$cough', Temperature = '$highTemperature', LossOfSAndT = '$changeSmellTaste', DaysWithSymp = '$daysSubText', Tested = '$tested', Hospitalised = '$hospitalised', MentalIssues = '$mentalIssues' Where PatientID = '$patientID'";
 
  if(mysqli_query($con,$Sql_Query)){
 
@@ -57,7 +60,7 @@ $SuccessfulJson = json_encode($SuccessfulMSG);
 
  }
  else {
- $UnsuccessfulMSG = 'Try Again 1' ;
+ $UnsuccessfulMSG = 'Try Again' ;
 
  // Converting the message into JSON format.
 $UnsuccessfulJson = json_encode($UnsuccessfulMSG);
@@ -69,7 +72,7 @@ $UnsuccessfulJson = json_encode($UnsuccessfulMSG);
  else{
 
  // Creating SQL query and insert the record into MySQL database table.
-$Sql_Query = "Insert into COVID (PatientID,Cough,Temperature,LossOfSAndT,DaysWithSymp,Tested,MentalIssues) values ('$patientID','$cough','$highTemperature','$changeSmellTaste','$daysSubText','$tested','$mentalIssues')";
+$Sql_Query = "Insert into COVID (PatientID,Cough,Temperature,LossOfSAndT,DaysWithSymp,Tested,Hospitalised,MentalIssues) values ('$patientID','$cough','$highTemperature','$changeSmellTaste','$daysSubText','$tested','$hospitalised','$mentalIssues')";
 
  if(mysqli_query($con,$Sql_Query)){
 
@@ -86,7 +89,7 @@ $SuccessfulJson = json_encode($SuccessfulMSG);
  else{
 
  // If the record inserted successfully then show the message.
-$InvalidMSG = 'Try Again 2' ;
+$InvalidMSG = 'Try Again' ;
 
 // Converting the message into JSON format.
 $InvalidJSon = json_encode($InvalidMSG);

@@ -14,6 +14,7 @@ class UpdateCovidSymptoms extends React.Component {
         changeSmellTaste: "0",
         daysSubText: "0",
         tested: "",
+        hospitalised: "0",
         mentalIssues: ""
     };
 
@@ -38,6 +39,13 @@ class UpdateCovidSymptoms extends React.Component {
         this.setState({ changeSmellTaste: button })
     }
 
+    hospitalised(flag, button) {
+        if (flag == 1) {
+            this.setState({ hospitalised: true });
+        }
+        this.setState({ hospitalised: button })
+    }
+
     onChanged(text){
         let newText = '';
         let numbers = '0123456789';
@@ -60,7 +68,8 @@ class UpdateCovidSymptoms extends React.Component {
          const { highTemperature }  = this.state ;
          const { changeSmellTaste }  = this.state ;
          const { daysSubText }  = this.state ;
-         const {tested } = this.state;
+         const { tested } = this.state;
+         const { hospitalised } = this.state;
          const { mentalIssues } = this.state;
 
          fetch('https://rsmcovidapp.000webhostapp.com/UpdateCovid.php', {
@@ -82,6 +91,8 @@ class UpdateCovidSymptoms extends React.Component {
                 daysSubText: daysSubText,
 
                 tested: tested,
+
+                hospitalised: hospitalised,
 
                 mentalIssues: mentalIssues
 
@@ -197,6 +208,17 @@ class UpdateCovidSymptoms extends React.Component {
                     })}
                 />
                 <Text></Text>
+                <View style={styles.inputView1} >
+                    <TouchableHighlight
+                        onPress={() => this.hospitalised('any flag', '1')}
+                        underlayColor="red">
+                        <View style={{ backgroundColor: (this.state.hospitalised === '1' ? '#fb5b5a' : 'white') }}>
+                            <Text style={styles.text}>
+                                Have you been hospitalised due to suffering from COVID-19?
+                            </Text>
+                        </View>
+                    </TouchableHighlight>
+                    </View>
                 <View style={styles.textInputViewMental} >
                 <Text style={styles.text}>
                         Please detail any mental issues you have experienced due to COVID below.
