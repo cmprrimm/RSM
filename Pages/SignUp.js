@@ -4,10 +4,11 @@ import { Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import DropDownPicker from 'react-native-dropdown-picker';
 import DatePicker from 'react-native-datepicker';
+import ValidationComponent from 'react-native-form-validator';
 
 class SignUp extends React.Component {
 
-    onChanged(text) {
+    checkNumber(text) {
         let newText = '';
         let numbers = '0123456789';
 
@@ -21,6 +22,30 @@ class SignUp extends React.Component {
             }
         }
         this.setState({ contactNo: text });
+    }
+
+    checkFullName(text) {
+        let newText = '';
+        let letters = /^[a-zA-Z]+$/;
+
+        for (var i = 0; i < text.length; i++) {
+            if (letters == true) {
+            }
+            else {
+                alert("Please enter letters only");
+            }
+        }
+        this.setState({ fullName: text });
+    }
+
+    validate() {
+        this.validate({
+            email: {email:true, required: true},
+            password: {required: true},
+            fullName: {required: true},
+            address: {required: true},
+            contactNo: {required: true, maxlength: 12, minlength: 12, hasNumber: true}
+        })
     }
 
     state = {
@@ -41,7 +66,6 @@ class SignUp extends React.Component {
         const { address } = this.state;
         const { gender } = this.state;
         const { DOB } = this.state;
-        useNativeDriver: true;
         const { contactNo } = this.state;
 
         fetch('https://rsmcovidapp.000webhostapp.com//User_Registration.php', {
@@ -92,15 +116,11 @@ class SignUp extends React.Component {
 
     render() {
         return (
-            
-
                 <SafeAreaView style={styles.container}>
-                    
                         <Text style={styles.logo}>First Time Login</Text>
                         <ScrollView style={{width: "100%"}}>
                         <KeyboardAwareScrollView>
                         <View style={styles.container}>
-                        
                         <View style={styles.inputView} >
                             <TextInput
                                 style={styles.inputText}
@@ -136,6 +156,7 @@ class SignUp extends React.Component {
                                 textContentType="familyName"
                                 returnKeyType="next"
                                 onSubmitEditing={() => { this.address.focus(); }}
+                                onChangeText={(text) => this.checkFullName(text)}
                                 onChangeText={text => this.setState({ fullName: text })} />
                         </View>
                         <View style={styles.inputView} >
@@ -176,7 +197,7 @@ class SignUp extends React.Component {
                         <Text></Text>
                         <View style={styles.inputView}>
                             <DatePicker date={this.state.DOB} showIcon={false} placeholder="Date of Birth" mode="date" format="YYYY-MM-DD"
-                                confirmBtnText="Confirm"
+                                confirmBtnText="Next"
                                 cancelBtnText="Cancel"
                                 customStyles={{
                                     dateInput: {
@@ -214,10 +235,12 @@ class SignUp extends React.Component {
                                 returnKeyType="go"
                                 onSubmitEditing={ this.UserRegistrationFunction }
                                 onChangeText={(text) => this.setState({ contactNo: text })}
-                                onChangeText={(text) => this.onChanged(text)}
+                                onChangeText={(text) => this.checkNumber(text)}
                             />
                         </View>
-                        <TouchableOpacity onPress={this.UserRegistrationFunction}
+                        <TouchableOpacity 
+                            onPress={this.validate}
+                            onPress={this.UserRegistrationFunction}
                             style={styles.registerBtn}>
                             <Text style={styles.signUpText}>Log in</Text>
                         </TouchableOpacity>
