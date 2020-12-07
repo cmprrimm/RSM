@@ -44,7 +44,7 @@ class SignUp extends React.Component {
             password: {required: true},
             fullName: {required: true},
             address: {required: true},
-            contactNo: {required: true, maxlength: 12, minlength: 12, hasNumber: true}
+            contactNo: {required: true, maxlength: 11, minlength: 13}
         })
     }
 
@@ -180,7 +180,7 @@ class SignUp extends React.Component {
                             ]}
                             defaultValue={this.state.gender}
                             placeholder="Please select your gender from the drop-down"
-                            containerStyle={{width: 325, height: 50}}
+                            containerStyle={{width: 325, height: 50, borderRadius: 25}}
                             style={{backgroundColor: '#fafafa'}}
                             labelStyle={{
                                 fontSize: 14,
@@ -196,7 +196,7 @@ class SignUp extends React.Component {
                         />
                         <Text></Text>
                         <View style={styles.inputView}>
-                            <DatePicker date={this.state.DOB} showIcon={false} placeholder="Date of Birth" mode="date" format="YYYY-MM-DD"
+                            <DatePicker date={this.state.DOB} showIcon={false} placeholder="Date of Birth" mode="date" format="YYYY-MM-DD" useNativeDriver= "true"
                                 confirmBtnText="Next"
                                 cancelBtnText="Cancel"
                                 customStyles={{
@@ -263,7 +263,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#00A9CE',
         alignItems: 'center',
-
     },
     logo: {
         fontWeight: "bold",
@@ -296,7 +295,7 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 40,
+        marginTop: 10,
         marginBottom: 10
     },
     signUpText: {
